@@ -1,3 +1,6 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Compile_Both=y
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <ButtonConstants.au3>
 #include <EditConstants.au3>
 #include <GUIConstantsEx.au3>
@@ -95,7 +98,7 @@ $Radio1 = GUICtrlCreateRadio("Shiny Hunt Bot", 488, 192, 113, 17)
 $Radio2 = GUICtrlCreateRadio("Level Bot (not completly finished)", 488, 216, 177, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUISetState(@SW_SHOW)
-GUICtrlSetData($Edit1,"Version 1.1.2")
+GUICtrlSetData($Edit1, "Version 1.1.2")
 #EndRegion ### END Koda GUI section ###
 
 ; Apply Settings
@@ -134,11 +137,11 @@ Else
 	MsgBox(0, "Error", "PokeOne need to be on 800x600 Resolution!")
 	Exit
 EndIf
-if $Set_Game_Focus = 1 Then
-UpdateLog("Set PokeOne always on Top.")
-WinSetOnTop("PokeOne", "", 1)
+If $Set_Game_Focus = 1 Then
+	UpdateLog("Set PokeOne always on Top.")
+	WinSetOnTop("PokeOne", "", 1)
 Else
-WinSetOnTop("PokeOne", "", 0)
+	WinSetOnTop("PokeOne", "", 0)
 EndIf
 
 UpdateLog("PokeOne Simple Bot Ready!")
@@ -153,7 +156,7 @@ While 1
 			Exit
 		Case $Button1
 			_go()
-		case $Radio1
+		Case $Radio1
 			$Bot_Mode = 1
 		Case $Radio2
 			$Bot_Mode = 2
@@ -162,11 +165,11 @@ WEnd
 
 Func _go()
 	$Startime = _NowTime()
-		GUICtrlSetData($Label2, "Started")
+	GUICtrlSetData($Label2, "Started")
 	GUICtrlSetData($Label4, $Startime)
 	GUICtrlSetData($Button1, "Bot is Running! ( Press " & $PauseKey & ") to Stop.)")
 	GUICtrlSetState($Button1, $GUI_DISABLE)
-	GUICtrlSetData($Label7,$Encounter)
+	GUICtrlSetData($Label7, $Encounter)
 	UpdateLog("Bot Started/Resumed")
 	If Not ProcessExists("PokeOne.exe") Then
 		MsgBox(0, "Error!", "PokeOne isnt open!")
@@ -216,6 +219,12 @@ EndFunc   ;==>_go
 
 Func Overworld()
 	Test_Logout()
+	$ClientPos = WinGetPos("PokeOne", "")
+	$ClientPos[1] = $ClientPos[1] + "30"
+	Sleep(150)
+		$OldMousePos = MouseGetPos()
+	MouseClick("LEFT",$ClientPos[0] + 30,$ClientPos[1] + 30,2)
+	MouseMove("LEFT",$OldMousePos[0],$OldMousePos[1])
 	GUICtrlSetData($Label2, "Overworld")
 	If $Simulate_Human_Walking = 1 Then
 		$rnd = Random(0, 1, 1)
@@ -271,11 +280,11 @@ EndFunc   ;==>_switch_mode
 
 
 Func Battle($X, $Y)
-		GUICtrlSetData($Label2, "Battle")
-	if $Save_Encounters_TXT Then
+	GUICtrlSetData($Label2, "Battle")
+	If $Save_Encounters_TXT Then
 		FileDelete(@ScriptDir & "\Encounter.txt")
 		FileWrite(@ScriptDir & "\Encounter.txt", $Encounter)
-		EndIf
+	EndIf
 	Sleep(1000)
 	$ClientPos = WinGetPos("PokeOne", "")
 	$ClientPos[1] = $ClientPos[1] + "30"
@@ -377,16 +386,16 @@ Func Battles($X, $Y)
 	$Shiny = PixelSearch($ClientPos[0] + "15", $ClientPos[1] + "5", $ClientPos[0] + "88", $ClientPos[1] + "152", 0xFFF200, 125)
 	If IsArray($Shiny) Then
 		MouseMove($Shiny[0], $Shiny[1])
-			GUICtrlSetData($Label2, "Shiny Found :)")
+		GUICtrlSetData($Label2, "Shiny Found :)")
 		UpdateLog("Shiny found after " & $Encounter & " Encounters, Bot paused!")
 		ShinyFound()
 
 	Else
 		$Encounter = $Encounter + "1"
 		UpdateLog("Encounter: " & $Encounter & ", No Shiny, Flee...")
-		if $Save_Encounters_TXT Then
-		FileDelete(@ScriptDir & "\Encounter.txt")
-		FileWrite(@ScriptDir & "\Encounter.txt", $Encounter)
+		If $Save_Encounters_TXT Then
+			FileDelete(@ScriptDir & "\Encounter.txt")
+			FileWrite(@ScriptDir & "\Encounter.txt", $Encounter)
 		EndIf
 
 		MouseClick("LEFT", $ClientPos[0] + "520", $ClientPos[1] + "581", 5, 1000)
@@ -453,7 +462,7 @@ Func Test_Logout()
 		$Logout = PixelSearch($ClientPos[0] + 657, $ClientPos[1] + 568, $ClientPos[0] + 788, $ClientPos[1] + 580, 0x5C1223, 3)
 		If IsArray($Logout) Then
 			UpdateLog("PokeOne Lost Connection! Relogging...")
-					GUICtrlSetData($Label2, "Relog...")
+			GUICtrlSetData($Label2, "Relog...")
 			MouseClick("LEFT", $ClientPos[0] + "422", $ClientPos[1] + "398", 5)
 			MouseMove($OldMousePos[0], $OldMousePos[1])
 			Sleep(5000)
@@ -474,9 +483,9 @@ EndFunc   ;==>Test_Logout
 ; Test if Connection Lost and try to Relog.
 Func ShinyFound()
 	$EndTime = _NowTime()
-		GUICtrlSetData($Label6, $EndTime)
+	GUICtrlSetData($Label6, $EndTime)
 	Do
-			GUICtrlSetData($Label2, "Shiny Found :)")
+		GUICtrlSetData($Label2, "Shiny Found :)")
 
 		$ClientPos = WinGetPos("PokeOne", "")
 		$ClientPos[1] = $ClientPos[1] + "30"
@@ -506,9 +515,9 @@ Func ShinyFound()
 EndFunc   ;==>ShinyFound
 
 Func _pause()
-		$EndTime = _NowTime()
-		GUICtrlSetData($Label6, $EndTime)
-		GUICtrlSetData($Label2, "Paused")
+	$EndTime = _NowTime()
+	GUICtrlSetData($Label6, $EndTime)
+	GUICtrlSetData($Label2, "Paused")
 
 	GUICtrlSetData($Button1, "Start")
 	GUICtrlSetState($Button1, $GUI_ENABLE)
@@ -530,16 +539,16 @@ Func UpdateLog($Text)
 EndFunc   ;==>UpdateLog
 
 Func _Save_Settings()
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Alert_Music",GUICtrlRead($Checkbox1))
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Avoid_Disconnect",GUICtrlRead($Checkbox2))
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Simulate_Human_Walking",GUICtrlRead($Checkbox3))
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Set_Game_Focus",GUICtrlRead($Checkbox4))
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Auto_Relog",GUICtrlRead($Checkbox5))
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Save_Encounters_TXT",GUICtrlRead($Checkbox6))
-	if $Bot_Mode = 1 Then
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode",1)
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Alert_Music", GUICtrlRead($Checkbox1))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Avoid_Disconnect", GUICtrlRead($Checkbox2))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Simulate_Human_Walking", GUICtrlRead($Checkbox3))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Set_Game_Focus", GUICtrlRead($Checkbox4))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Auto_Relog", GUICtrlRead($Checkbox5))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Save_Encounters_TXT", GUICtrlRead($Checkbox6))
+	If $Bot_Mode = 1 Then
+		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode", 1)
 	Else
-		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode",2)
+		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode", 2)
 	EndIf
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounter",$Encounter)
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounter", $Encounter)
 EndFunc   ;==>_Save_Settings
