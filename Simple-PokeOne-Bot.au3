@@ -56,46 +56,46 @@ $Encounter = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounters",
 
 Global $Paused
 
-
-#Region ### START Koda GUI section ### Form=C:\Users\Chris\Desktop\Form1.kxf
-$Form1 = GUICreate("Simple Bot for PokeOne v1.1.2", 583, 288, 233, 142)
-$Group1 = GUICtrlCreateGroup("Bot Log:", 8, 0, 185, 281)
-$Edit1 = GUICtrlCreateEdit("", 16, 16, 169, 257)
+#Region ### START Koda GUI section ### Form=c:\users\chris\documents\github\simple-pokeone-bot\gui\form1.kxf
+$Form1_1 = GUICreate("Simple Bot for PokeOne v1.1.2", 678, 288, 233, 142)
+$Group1 = GUICtrlCreateGroup("Bot Log:", 8, 0, 281, 281)
+$Edit1 = GUICtrlCreateEdit("", 16, 16, 265, 257)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group2 = GUICtrlCreateGroup("Status", 200, 0, 177, 97)
-$Label1 = GUICtrlCreateLabel("Current State", 208, 24, 66, 17)
-$Label2 = GUICtrlCreateLabel("Bot not running", 288, 24, 76, 17)
-$Label3 = GUICtrlCreateLabel("Start Time:", 208, 48, 55, 17)
-$Label4 = GUICtrlCreateLabel("n/A", 288, 48, 78, 17)
-$Label5 = GUICtrlCreateLabel("End Time:", 208, 72, 52, 17)
-$Label6 = GUICtrlCreateLabel("n/A", 288, 72, 78, 17)
+$Group2 = GUICtrlCreateGroup("Status", 296, 0, 177, 97)
+$Label1 = GUICtrlCreateLabel("Current State", 304, 24, 66, 27)
+$Label2 = GUICtrlCreateLabel("Bot not running", 384, 24, 76, 27)
+$Label3 = GUICtrlCreateLabel("Start Time:", 304, 48, 55, 37)
+$Label4 = GUICtrlCreateLabel("n/A", 384, 48, 42, 47)
+$Label5 = GUICtrlCreateLabel("End Time:", 304, 72, 52, 27)
+$Label6 = GUICtrlCreateLabel("n/A", 384, 72, 42, 27)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group3 = GUICtrlCreateGroup("Bot Settings:", 384, 0, 193, 169)
-$Checkbox1 = GUICtrlCreateCheckbox("Alert when Shiny Found Music", 392, 24, 177, 17)
-$Checkbox2 = GUICtrlCreateCheckbox("Avoid Disconnecting after Found", 392, 48, 177, 17)
-$Checkbox3 = GUICtrlCreateCheckbox("Simulate Human-Like Walking", 392, 72, 177, 17)
-$Checkbox4 = GUICtrlCreateCheckbox("Set Game on Focus", 392, 96, 177, 17)
-$Checkbox5 = GUICtrlCreateCheckbox("Save Encounters in Text File", 392, 144, 177, 17)
-$Checkbox6 = GUICtrlCreateCheckbox("Auto Relogging", 392, 120, 177, 17)
+$Group3 = GUICtrlCreateGroup("Bot Settings:", 480, 0, 193, 169)
+$Checkbox1 = GUICtrlCreateCheckbox("Alert when Shiny Found Music", 488, 24, 177, 17)
+$Checkbox2 = GUICtrlCreateCheckbox("Avoid Disconnecting after Found", 488, 48, 177, 17)
+$Checkbox3 = GUICtrlCreateCheckbox("Simulate Human-Like Walking", 488, 72, 177, 17)
+$Checkbox4 = GUICtrlCreateCheckbox("Set Game on Focus", 488, 96, 177, 17)
+$Checkbox5 = GUICtrlCreateCheckbox("Save Encounters in Text File", 488, 144, 177, 17)
+$Checkbox6 = GUICtrlCreateCheckbox("Auto Relogging", 488, 120, 177, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group4 = GUICtrlCreateGroup("Shiny Hunt Log:", 200, 96, 177, 73)
-$Label7 = GUICtrlCreateLabel("Encounters: ", 208, 120, 64, 17)
-$Label8 = GUICtrlCreateLabel("n/A", 312, 120, 54, 17)
-$Label9 = GUICtrlCreateLabel("Latest Encounters: ", 208, 144, 96, 17)
-$Label10 = GUICtrlCreateLabel("n/A", 312, 144, 54, 17)
+$Group4 = GUICtrlCreateGroup("Shiny Hunt Log:", 296, 96, 177, 73)
+$Label7 = GUICtrlCreateLabel("Encounters: ", 304, 120, 64, 17)
+$Label8 = GUICtrlCreateLabel("n/A", 408, 120, 42, 17)
+$Label9 = GUICtrlCreateLabel("Latest Encounters: ", 304, 144, 96, 17)
+$Label10 = GUICtrlCreateLabel("n/A", 408, 144, 42, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Button1 = GUICtrlCreateButton("Start", 200, 256, 379, 25)
-$Group6 = GUICtrlCreateGroup("Level Bot Log", 200, 168, 177, 81)
-$Label11 = GUICtrlCreateLabel("Encounters: ", 208, 192, 64, 17)
-$Label12 = GUICtrlCreateLabel("n/A", 312, 192, 54, 17)
-$Label13 = GUICtrlCreateLabel("Pokemon Fainted: ", 208, 216, 93, 17)
-$Label14 = GUICtrlCreateLabel("n/A", 312, 216, 22, 17)
+$Button1 = GUICtrlCreateButton("Start", 296, 256, 379, 25)
+$Group6 = GUICtrlCreateGroup("Level Bot Log", 296, 168, 177, 81)
+$Label11 = GUICtrlCreateLabel("Encounters: ", 304, 192, 64, 17)
+$Label12 = GUICtrlCreateLabel("n/A", 408, 192, 22, 17)
+$Label13 = GUICtrlCreateLabel("Pokemon Fainted: ", 304, 216, 93, 17)
+$Label14 = GUICtrlCreateLabel("n/A", 408, 216, 22, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group5 = GUICtrlCreateGroup("Bot Mode Settings", 384, 168, 193, 81)
-$Radio1 = GUICtrlCreateRadio("Shiny Hunt Bot", 392, 192, 113, 17)
-$Radio2 = GUICtrlCreateRadio("Level Bot (not completly finished)", 392, 216, 177, 17)
+$Group5 = GUICtrlCreateGroup("Bot Mode Settings", 480, 168, 193, 81)
+$Radio1 = GUICtrlCreateRadio("Shiny Hunt Bot", 488, 192, 113, 17)
+$Radio2 = GUICtrlCreateRadio("Level Bot (not completly finished)", 488, 216, 177, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUISetState(@SW_SHOW)
+GUICtrlSetData($Edit1,"Version 1.1.2")
 #EndRegion ### END Koda GUI section ###
 
 ; Apply Settings
@@ -108,9 +108,9 @@ GUICtrlSetState($Checkbox5, $Save_Encounters_TXT)
 GUICtrlSetState($Checkbox6, $Auto_Relog)
 
 If $Bot_Mode = 1 Then
-	GUICtrlSetState($Radio1, $Bot_Mode)
+	GUICtrlSetState($Radio1, 1)
 Else
-	GUICtrlSetState($Radio2, $Bot_Mode)
+	GUICtrlSetState($Radio2, 1)
 EndIf
 ;
 ; Apply Hotkeys
@@ -127,6 +127,21 @@ Else
 	Exit
 EndIf
 
+If $c[0] = 800 And $c[1] = 600 Then
+	UpdateLog("PokeOne Resultion is Valid: " & $c[0] & "," & $c[1])
+
+Else
+	MsgBox(0, "Error", "PokeOne need to be on 800x600 Resolution!")
+	Exit
+EndIf
+if $Set_Game_Focus = 1 Then
+UpdateLog("Set PokeOne always on Top.")
+WinSetOnTop("PokeOne", "", 1)
+Else
+WinSetOnTop("PokeOne", "", 0)
+EndIf
+
+UpdateLog("PokeOne Simple Bot Ready!")
 
 
 
@@ -138,16 +153,21 @@ While 1
 			Exit
 		Case $Button1
 			_go()
+		case $Radio1
+			$Bot_Mode = 1
+		Case $Radio2
+			$Bot_Mode = 2
 	EndSwitch
 WEnd
 
 Func _go()
 	$Startime = _NowTime()
+		GUICtrlSetData($Label2, "Started")
 	GUICtrlSetData($Label4, $Startime)
 	GUICtrlSetData($Button1, "Bot is Running! ( Press " & $PauseKey & ") to Stop.)")
 	GUICtrlSetState($Button1, $GUI_DISABLE)
 	GUICtrlSetData($Label7,$Encounter)
-	GUICtrlSetData($Edit1, "Bot Started/Resumed")
+	UpdateLog("Bot Started/Resumed")
 	If Not ProcessExists("PokeOne.exe") Then
 		MsgBox(0, "Error!", "PokeOne isnt open!")
 		Exit
@@ -196,7 +216,7 @@ EndFunc   ;==>_go
 
 Func Overworld()
 	Test_Logout()
-
+	GUICtrlSetData($Label2, "Overworld")
 	If $Simulate_Human_Walking = 1 Then
 		$rnd = Random(0, 1, 1)
 		If $rnd = 0 Then
@@ -251,6 +271,7 @@ EndFunc   ;==>_switch_mode
 
 
 Func Battle($X, $Y)
+		GUICtrlSetData($Label2, "Battle")
 	if $Save_Encounters_TXT Then
 		FileDelete(@ScriptDir & "\Encounter.txt")
 		FileWrite(@ScriptDir & "\Encounter.txt", $Encounter)
@@ -344,6 +365,7 @@ EndFunc   ;==>Battle
 
 Func Battles($X, $Y)
 	Test_Logout()
+	GUICtrlSetData($Label2, "Battle")
 
 	$ClientPos = WinGetPos("PokeOne", "")
 	$ClientPos[1] = $ClientPos[1] + "30"
@@ -355,12 +377,13 @@ Func Battles($X, $Y)
 	$Shiny = PixelSearch($ClientPos[0] + "15", $ClientPos[1] + "5", $ClientPos[0] + "88", $ClientPos[1] + "152", 0xFFF200, 125)
 	If IsArray($Shiny) Then
 		MouseMove($Shiny[0], $Shiny[1])
+			GUICtrlSetData($Label2, "Shiny Found :)")
 		UpdateLog("Shiny found after " & $Encounter & " Encounters, Bot paused!")
 		ShinyFound()
 
 	Else
 		$Encounter = $Encounter + "1"
-		UpdateLog("Enc.: " & $Encounter & ", No Shiny, Flee...")
+		UpdateLog("Encounter: " & $Encounter & ", No Shiny, Flee...")
 		if $Save_Encounters_TXT Then
 		FileDelete(@ScriptDir & "\Encounter.txt")
 		FileWrite(@ScriptDir & "\Encounter.txt", $Encounter)
@@ -374,6 +397,7 @@ EndFunc   ;==>Battles
 
 
 Func PokemonFainted()
+	GUICtrlSetData($Label2, "PKMN Fainted")
 
 	$ClientPos = WinGetPos("PokeOne", "")
 	$ClientPos[1] = $ClientPos[1] + "30"
@@ -421,6 +445,7 @@ EndFunc   ;==>PokemonFainted
 
 
 Func Test_Logout()
+
 	$ClientPos = WinGetPos("PokeOne", "")
 	$ClientPos[1] = $ClientPos[1] + "30"
 	$OldMousePos = MouseGetPos()
@@ -428,6 +453,7 @@ Func Test_Logout()
 		$Logout = PixelSearch($ClientPos[0] + 657, $ClientPos[1] + 568, $ClientPos[0] + 788, $ClientPos[1] + 580, 0x5C1223, 3)
 		If IsArray($Logout) Then
 			UpdateLog("PokeOne Lost Connection! Relogging...")
+					GUICtrlSetData($Label2, "Relog...")
 			MouseClick("LEFT", $ClientPos[0] + "422", $ClientPos[1] + "398", 5)
 			MouseMove($OldMousePos[0], $OldMousePos[1])
 			Sleep(5000)
@@ -447,7 +473,11 @@ EndFunc   ;==>Test_Logout
 ; Play a Sound File to Alert.
 ; Test if Connection Lost and try to Relog.
 Func ShinyFound()
+	$EndTime = _NowTime()
+		GUICtrlSetData($Label6, $EndTime)
 	Do
+			GUICtrlSetData($Label2, "Shiny Found :)")
+
 		$ClientPos = WinGetPos("PokeOne", "")
 		$ClientPos[1] = $ClientPos[1] + "30"
 		Test_Logout()
@@ -472,15 +502,21 @@ Func ShinyFound()
 		Sleep(30000)
 	Until $Paused = False
 	$Paused = False
+	$Encounter = 0
 EndFunc   ;==>ShinyFound
 
 Func _pause()
+		$EndTime = _NowTime()
+		GUICtrlSetData($Label6, $EndTime)
+		GUICtrlSetData($Label2, "Paused")
+
 	GUICtrlSetData($Button1, "Start")
 	GUICtrlSetState($Button1, $GUI_ENABLE)
 	$Paused = False
 EndFunc   ;==>_pause
 
 Func _stop()
+	_Save_Settings()
 	Exit
 EndFunc   ;==>_stop
 
@@ -494,12 +530,16 @@ Func UpdateLog($Text)
 EndFunc   ;==>UpdateLog
 
 Func _Save_Settings()
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", $Alert_Music, "0")
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", $Avoid_Disconnect, "0")
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", $Simulate_Human_Walking, "0")
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", $Set_Game_Focus, "0")
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", $Auto_Relog, "0")
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", $Save_Encounters_TXT, "0")
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", $Bot_Mode, "1")
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", $Encounter, "0")
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Alert_Music",GUICtrlRead($Checkbox1))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Avoid_Disconnect",GUICtrlRead($Checkbox2))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Simulate_Human_Walking",GUICtrlRead($Checkbox3))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Set_Game_Focus",GUICtrlRead($Checkbox4))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Auto_Relog",GUICtrlRead($Checkbox5))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Save_Encounters_TXT",GUICtrlRead($Checkbox6))
+	if $Bot_Mode = 1 Then
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode",1)
+	Else
+		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode",2)
+	EndIf
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounter",$Encounter)
 EndFunc   ;==>_Save_Settings

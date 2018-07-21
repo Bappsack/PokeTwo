@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="windows-1251"?>
-<object type="TAForm" name="Form1">
+<object type="TAForm" name="Form1_1">
 	<properties>
 		<property name="Left" vt="Int16">233</property>
 		<property name="Top" vt="Int16">142</property>
-		<property name="Width" vt="Int16">598</property>
+		<property name="Width" vt="Int16">693</property>
 		<property name="Height" vt="Int16">326</property>
 		<property name="Caption" vt="String">Simple Bot for PokeOne v1.1.2</property>
 		<property name="Color" vt="Ident">clBtnFace</property>
@@ -34,7 +34,7 @@
 			<properties>
 				<property name="Left" vt="Int8">8</property>
 				<property name="Top" vt="Int8">0</property>
-				<property name="Width" vt="Int16">185</property>
+				<property name="Width" vt="Int16">281</property>
 				<property name="Height" vt="Int16">281</property>
 				<property name="CtrlStyle" vt="Int32">1342308359</property>
 				<property name="CtrlExStyle" vt="Int8">0</property>
@@ -47,7 +47,7 @@
 					<properties>
 						<property name="Left" vt="Int8">8</property>
 						<property name="Top" vt="Int8">16</property>
-						<property name="Width" vt="Int16">169</property>
+						<property name="Width" vt="Int16">265</property>
 						<property name="Height" vt="Int16">257</property>
 						<property name="Lines.Strings" vt="List">
 							<list>
@@ -65,7 +65,7 @@
 		</object>
 		<object type="TAGroup" name="Group2">
 			<properties>
-				<property name="Left" vt="Int16">200</property>
+				<property name="Left" vt="Int16">296</property>
 				<property name="Top" vt="Int8">0</property>
 				<property name="Width" vt="Int16">177</property>
 				<property name="Height" vt="Int8">97</property>
@@ -125,7 +125,7 @@
 					<properties>
 						<property name="Left" vt="Int8">88</property>
 						<property name="Top" vt="Int8">48</property>
-						<property name="Width" vt="Int8">78</property>
+						<property name="Width" vt="Int8">22</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">3</property>
@@ -155,7 +155,7 @@
 					<properties>
 						<property name="Left" vt="Int8">88</property>
 						<property name="Top" vt="Int8">72</property>
-						<property name="Width" vt="Int8">78</property>
+						<property name="Width" vt="Int8">22</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">5</property>
@@ -170,7 +170,7 @@
 		</object>
 		<object type="TAGroup" name="Group3">
 			<properties>
-				<property name="Left" vt="Int16">384</property>
+				<property name="Left" vt="Int16">480</property>
 				<property name="Top" vt="Int8">0</property>
 				<property name="Width" vt="Int16">193</property>
 				<property name="Height" vt="Int16">169</property>
@@ -269,7 +269,7 @@
 		</object>
 		<object type="TAGroup" name="Group4">
 			<properties>
-				<property name="Left" vt="Int16">200</property>
+				<property name="Left" vt="Int16">296</property>
 				<property name="Top" vt="Int8">96</property>
 				<property name="Width" vt="Int16">177</property>
 				<property name="Height" vt="Int8">73</property>
@@ -299,7 +299,7 @@
 					<properties>
 						<property name="Left" vt="Int8">112</property>
 						<property name="Top" vt="Int8">24</property>
-						<property name="Width" vt="Int8">54</property>
+						<property name="Width" vt="Int8">22</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">1</property>
@@ -329,7 +329,7 @@
 					<properties>
 						<property name="Left" vt="Int8">112</property>
 						<property name="Top" vt="Int8">48</property>
-						<property name="Width" vt="Int8">54</property>
+						<property name="Width" vt="Int8">22</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">3</property>
@@ -344,7 +344,7 @@
 		</object>
 		<object type="TAButton" name="Button1">
 			<properties>
-				<property name="Left" vt="Int16">200</property>
+				<property name="Left" vt="Int16">296</property>
 				<property name="Top" vt="Int16">256</property>
 				<property name="Width" vt="Int16">379</property>
 				<property name="Height" vt="Int8">25</property>
@@ -359,7 +359,7 @@
 		</object>
 		<object type="TAGroup" name="Group6">
 			<properties>
-				<property name="Left" vt="Int16">200</property>
+				<property name="Left" vt="Int16">296</property>
 				<property name="Top" vt="Int16">168</property>
 				<property name="Width" vt="Int16">177</property>
 				<property name="Height" vt="Int8">81</property>
@@ -389,7 +389,7 @@
 					<properties>
 						<property name="Left" vt="Int8">112</property>
 						<property name="Top" vt="Int8">24</property>
-						<property name="Width" vt="Int8">54</property>
+						<property name="Width" vt="Int8">22</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">1</property>
@@ -434,7 +434,7 @@
 		</object>
 		<object type="TAGroup" name="Group5">
 			<properties>
-				<property name="Left" vt="Int16">384</property>
+				<property name="Left" vt="Int16">480</property>
 				<property name="Top" vt="Int16">168</property>
 				<property name="Width" vt="Int16">193</property>
 				<property name="Height" vt="Int8">81</property>
