@@ -21,4 +21,4 @@ HotKeys:
 
 This Bot is just a maybe 1h Project, there will be in Future better Bots via TCP Packets or something, u can just use it now for waiting for a better Bot :)
 
-Reposity will get Updates and Fixes when i have Time, i  personally use it for Shiny Hunting only atm.
+Repository will get Updates and Fixes when i have Time, i  personally use it for Shiny Hunting only atm.
