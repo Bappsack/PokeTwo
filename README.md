@@ -9,7 +9,7 @@ Features:
 
 - Shiny Hunting (only for Wild Encounters)
 - EXP Farming ( it just use the Moves 1-4 and Auto Switch the Pokemon, if u have no Pokemon Left the Bot will Stop).
-
+- Auto Reconnect
 
 HotKeys:
 
