@@ -125,7 +125,7 @@
 					<properties>
 						<property name="Left" vt="Int8">88</property>
 						<property name="Top" vt="Int8">48</property>
-						<property name="Width" vt="Int8">22</property>
+						<property name="Width" vt="Int8">78</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">3</property>
@@ -155,7 +155,7 @@
 					<properties>
 						<property name="Left" vt="Int8">88</property>
 						<property name="Top" vt="Int8">72</property>
-						<property name="Width" vt="Int8">22</property>
+						<property name="Width" vt="Int8">78</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">5</property>
@@ -299,7 +299,7 @@
 					<properties>
 						<property name="Left" vt="Int8">112</property>
 						<property name="Top" vt="Int8">24</property>
-						<property name="Width" vt="Int8">22</property>
+						<property name="Width" vt="Int8">54</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">1</property>
@@ -329,7 +329,7 @@
 					<properties>
 						<property name="Left" vt="Int8">112</property>
 						<property name="Top" vt="Int8">48</property>
-						<property name="Width" vt="Int8">22</property>
+						<property name="Width" vt="Int8">54</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">3</property>
@@ -389,7 +389,7 @@
 					<properties>
 						<property name="Left" vt="Int8">112</property>
 						<property name="Top" vt="Int8">24</property>
-						<property name="Width" vt="Int8">22</property>
+						<property name="Width" vt="Int8">54</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">n/A</property>
 						<property name="TabOrder" vt="Int8">1</property>
@@ -404,10 +404,25 @@
 					<properties>
 						<property name="Left" vt="Int8">8</property>
 						<property name="Top" vt="Int8">48</property>
-						<property name="Width" vt="Int8">42</property>
+						<property name="Width" vt="Int8">93</property>
 						<property name="Height" vt="Int8">17</property>
-						<property name="Caption" vt="String">Label13</property>
+						<property name="Caption" vt="String">Pokemon Fainted: </property>
 						<property name="TabOrder" vt="Int8">2</property>
+						<property name="HaveVariable" vt="False">False</property>
+						<property name="CtrlStyle" vt="Int32">1342308608</property>
+						<property name="CtrlExStyle" vt="Int8">0</property>
+						<property name="Resizing" vt="Set"/>
+					</properties>
+					<components/>
+				</object>
+				<object type="TALabel" name="Label14">
+					<properties>
+						<property name="Left" vt="Int8">112</property>
+						<property name="Top" vt="Int8">48</property>
+						<property name="Width" vt="Int8">22</property>
+						<property name="Height" vt="Int8">17</property>
+						<property name="Caption" vt="String">n/A</property>
+						<property name="TabOrder" vt="Int8">3</property>
 						<property name="HaveVariable" vt="False">False</property>
 						<property name="CtrlStyle" vt="Int32">1342308608</property>
 						<property name="CtrlExStyle" vt="Int8">0</property>
