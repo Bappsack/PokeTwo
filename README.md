@@ -2,7 +2,7 @@
 
 This is a Simple Bot for PokeOne, expect not to much, this is only a Pixel Based Bot for Shiny Hunting or Lazy Leveling.
 
-PokeONE need to be always in Focus & Top because it Send Key Inputs for Walking and need to see the Window to Detect Screen Positions for Bot States.
+PokeONE need to be on 800x600 Resolition and always in Focus & Top because it Send Key Inputs for Walking and need to see the Window to Detect Screen Positions for Bot States.
 
 
 Features:
