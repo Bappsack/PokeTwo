@@ -1,5 +1,4 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Icon=..\..\..\Desktop\Ledybot-master - Kopie (3)\Ledybot\Cherish Ball.ico
 #AutoIt3Wrapper_Compile_Both=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <ButtonConstants.au3>
@@ -55,7 +54,6 @@ $Save_Encounters_TXT = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Sa
 $Bot_Mode = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode", "1")
 $Encounter = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounters", "0")
 
-$PokemonFainted = 0
 ; #############################################################################################
 
 
@@ -112,7 +110,6 @@ GUICtrlSetState($Checkbox4, $Set_Game_Focus)
 GUICtrlSetState($Checkbox5, $Save_Encounters_TXT)
 GUICtrlSetState($Checkbox6, $Auto_Relog)
 
-GUICtrlSetData($Label10,$Encounter)
 If $Bot_Mode = 1 Then
 	GUICtrlSetState($Radio1, 1)
 Else
@@ -149,49 +146,42 @@ WEnd
 
 Func _go()
 	If WinExists("PokeOne") Then
-		$c = WinGetClientSize("PokeOne")
-	Else
-		UpdateLog("PokeOne isn't open!" & @CRLF & @CRLF & "Exit.")
-		Return
-	EndIf
+	$c = WinGetClientSize("PokeOne")
+Else
+	MsgBox(48, "Error", "PokeOne isn't open!" & @CRLF & @CRLF & "Exit.")
+	Exit
+EndIf
 
-	If $c[0] = 800 And $c[1] = 600 Then
-		UpdateLog("PokeOne Resultion is Valid: " & $c[0] & "," & $c[1])
+If $c[0] = 800 And $c[1] = 600 Then
+	UpdateLog("PokeOne Resultion is Valid: " & $c[0] & "," & $c[1])
 
-	Else
-		UpdateLog("PokeOne is not 800x600 Resolution!")
-		UpdateLog("Your Resolution is: " & $c[0] & "," & $c[1] & ", or not Vissible.")
-		Return
-	EndIf
-	If $Set_Game_Focus = 1 Then
-		UpdateLog("Set PokeOne always on Top.")
-		WinSetOnTop("PokeOne", "", 1)
-	Else
-		WinSetOnTop("PokeOne", "", 0)
-	EndIf
+Else
+	MsgBox(0, "Error", "PokeOne need to be on 800x600 Resolution!")
+	Exit
+EndIf
+If $Set_Game_Focus = 1 Then
+	UpdateLog("Set PokeOne always on Top.")
+	WinSetOnTop("PokeOne", "", 1)
+Else
+	WinSetOnTop("PokeOne", "", 0)
+EndIf
 	$Startime = _NowTime()
 	GUICtrlSetData($Label2, "Started")
 	GUICtrlSetData($Label4, $Startime)
 	GUICtrlSetData($Button1, "Bot is Running! ( Press " & $PauseKey & ") to Stop.)")
 	GUICtrlSetState($Button1, $GUI_DISABLE)
-	GUICtrlSetData($Label8, $Encounter)
-
+	GUICtrlSetData($Label7, $Encounter)
 	UpdateLog("Bot Started/Resumed")
 	If Not ProcessExists("PokeOne.exe") Then
 		MsgBox(0, "Error!", "PokeOne isnt open!")
 		Exit
 	EndIf
 
-	$ClientPos = WinGetPos("PokeOne", "")
-	$ClientPos[1] = $ClientPos[1] + "30"
-	Sleep(150)
-	$OldMousePos = MouseGetPos()
-	MouseClick("LEFT", $ClientPos[0] + 30, $ClientPos[1] + 30, 2)
-	MouseMove("LEFT", $OldMousePos[0], $OldMousePos[1])
-
 	$Paused = True
 	$i = 1
 	Do
+		$ClientPos = WinGetPos("PokeOne", "")
+		$ClientPos[1] = $ClientPos[1] + "30"
 		$Hwid = WinGetHandle("PokeOne")
 		$winpos = WinGetPos("PokeOne")
 
@@ -214,15 +204,13 @@ Func _go()
 			EndIf
 		EndIf
 
-			if $Bot_Mode = 2 Then
+		If $Bot_Mode = 2 Then
 			$SwitchPokemon = PixelSearch($ClientPos[0] + "317", $ClientPos[1] + "138", $ClientPos[0] + "482", $ClientPos[1] + "150", 0xFFFFFF)
 			If IsArray($SwitchPokemon) Then
 				UpdateLog("Pokemon fainted! Switch to next Pokemon!")
 				PokemonFainted()
 			EndIf
-			EndIf
-
-
+		EndIf
 
 		Sleep(50)
 	Until $Paused = False
@@ -232,6 +220,12 @@ EndFunc   ;==>_go
 
 Func Overworld()
 	Test_Logout()
+	$ClientPos = WinGetPos("PokeOne", "")
+	$ClientPos[1] = $ClientPos[1] + "30"
+	Sleep(150)
+		$OldMousePos = MouseGetPos()
+	MouseClick("LEFT",$ClientPos[0] + 30,$ClientPos[1] + 30,2)
+	MouseMove("LEFT",$OldMousePos[0],$OldMousePos[1])
 	GUICtrlSetData($Label2, "Overworld")
 	If $Simulate_Human_Walking = 1 Then
 		$rnd = Random(0, 1, 1)
@@ -274,10 +268,20 @@ Func Overworld()
 EndFunc   ;==>Overworld
 
 
+Func _switch_mode()
+	If $Bot_Mode = 1 Then
+		$Bot_Mode = 2
+		UpdateLog("Level Mode activated")
+	ElseIf $Bot_Mode = 2 Then
+		$Bot_Mode = 1
+		UpdateLog("Shiny Hunt Mode activated")
+	EndIf
+
+EndFunc   ;==>_switch_mode
+
+
 Func Battle($X, $Y)
 	GUICtrlSetData($Label2, "Battle")
-	$Encounter = $Encounter + 1
-	GUICtrlSetData($Label12,$Encounter)
 	If $Save_Encounters_TXT Then
 		FileDelete(@ScriptDir & "\Encounter.txt")
 		FileWrite(@ScriptDir & "\Encounter.txt", $Encounter)
@@ -380,7 +384,7 @@ Func Battles($X, $Y)
 	$OldMousePos = MouseGetPos()
 	Sleep(1000)
 
-	$Shiny = PixelSearch($ClientPos[0] + "15", $ClientPos[1] + "5", $ClientPos[0] + "88", $ClientPos[1] + "152", 0xFFF200, 105)
+	$Shiny = PixelSearch($ClientPos[0] + "15", $ClientPos[1] + "5", $ClientPos[0] + "88", $ClientPos[1] + "152", 0xFFF200, 125)
 	If IsArray($Shiny) Then
 		MouseMove($Shiny[0], $Shiny[1])
 		GUICtrlSetData($Label2, "Shiny Found :)")
@@ -393,7 +397,6 @@ Func Battles($X, $Y)
 		If $Save_Encounters_TXT Then
 			FileDelete(@ScriptDir & "\Encounter.txt")
 			FileWrite(@ScriptDir & "\Encounter.txt", $Encounter)
-			GUICtrlSetData($label8,$Encounter)
 		EndIf
 
 		MouseClick("LEFT", $ClientPos[0] + "520", $ClientPos[1] + "581", 5, 1000)
@@ -405,8 +408,7 @@ EndFunc   ;==>Battles
 
 Func PokemonFainted()
 	GUICtrlSetData($Label2, "PKMN Fainted")
-	$PokemonFainted = $PokemonFainted + 1
-	GUICtrlSetData($Label14,$PokemonFainted)
+
 	$ClientPos = WinGetPos("PokeOne", "")
 	$ClientPos[1] = $ClientPos[1] + "30"
 
@@ -457,7 +459,7 @@ Func Test_Logout()
 	$ClientPos = WinGetPos("PokeOne", "")
 	$ClientPos[1] = $ClientPos[1] + "30"
 
-	$ClientSize = WinGetClientSize("PokeOne", "")
+	$ClientSize = WinGetClientSize("PokeOne","")
 
 	$OldMousePos = MouseGetPos()
 	If $Auto_Relog Then
@@ -507,7 +509,7 @@ Func ShinyFound()
 		EndIf
 
 		If $Alert_Music = 1 Then
-			SoundPlay(@ScriptDir & "\Shiny.mp3")
+			SoundPlay(@TempDir & "\Shiny.mp3")
 		EndIf
 
 		Sleep(30000)
@@ -520,7 +522,7 @@ Func _pause()
 	$EndTime = _NowTime()
 	GUICtrlSetData($Label6, $EndTime)
 	GUICtrlSetData($Label2, "Paused")
-	GUICtrlSetData($label10,$Encounter)
+
 	GUICtrlSetData($Button1, "Start")
 	GUICtrlSetState($Button1, $GUI_ENABLE)
 	$Paused = False
