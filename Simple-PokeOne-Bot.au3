@@ -1,7 +1,6 @@
 #NoTrayIcon
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Icon=..\..\..\Desktop\Ledybot-master - Kopie (3)\Ledybot\Cherish Ball.ico
-#AutoIt3Wrapper_Compile_Both=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <ButtonConstants.au3>
 #include <EditConstants.au3>
@@ -22,7 +21,6 @@
 ; Create Settings.ini if it don't Exist
 ;
 
-Run(@LocalAppDataDir & "\PokeONE\files\PokeOne.exe")
 
 If Not FileExists(@ScriptDir & "\Settings.ini") Then
 	; Hotkeys
