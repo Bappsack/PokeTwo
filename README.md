@@ -13,7 +13,7 @@ Important Notes:
 
 Features:
 
--Shiny Hunting (Wild and Fishing Encounters)
+- Shiny Hunting (Wild and Fishing Encounters)
 - EXP Farming ( it just use the Moves 1-4 and Auto Switch the Pokemon, if u have no Pokemon Left the Bot will Stop).
 - Live Encounter Display for OBS or other.
 
