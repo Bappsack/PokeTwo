@@ -16,7 +16,6 @@
 #include <WindowsConstants.au3>
 #include <ComboConstants.au3>
 #include <Misc.au3>
-SoundPlay(@ScriptDir & "\Shiny.mp3")
 ; Load Ini File
 ; #############################################################################################
 ;
@@ -346,12 +345,13 @@ Func Overworld()
 	If $Bot_Mode = 3 Then
 		If $FishingCoordsX = 0 Then
 			UpdateLog("Fishing Rod Coordination Mode active!")
-			UpdateLog("Hover your Mouse over your Fishing Rod" & @CRLF & " and then Press F2")
+			UpdateLog("Place your Mouse on the Rod")
+			UpdateLog("and then Press ENTER")
 			UpdateLog("Waiting for Fishing Key is pressed...")
 			Do
 				GUICtrlSetData($Label2, "Waiting...")
 				Sleep(100)
-			Until _IsPressed("71") ;71 for F2
+			Until _IsPressed("0D") ;71 for F2
 			UpdateLog("Fishing Rod Coords. Saved!")
 			;InputBox("Fishing Rod Coordinations", "Hover your Mouse over the Fishing Rod u want to Use and Press [ENTER] (Make Sure this InputBox is on Top)")
 			$FishingCoords = MouseGetPos()
