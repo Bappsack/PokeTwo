@@ -2,7 +2,14 @@
 
 This is a Simple Bot for PokeOne, expect not to much, this is only a Pixel Based Bot for Shiny Hunting or Lazy Leveling.
 
-PokeONE need to be on 800x600 Resolition and always in Focus & Top because it Send Key Inputs for Walking and need to see the Window to Detect Screen Positions for Bot States.
+
+Important Notes:
+
+- PokeONE need to be on 800x600 Resolition.
+- PokeOne need to be always in Top/Focus for Sending Keys and Scanning the Screen.
+- Use the Bot for your own Risk, botting is not allowed in This Game and could result a Ban.
+- I am not responsible if you get banned.
+
 
 Features:
 
@@ -18,3 +25,5 @@ HotKeys:
 - F7 Panic/Close Bot
 
 (HotKeys can be changed in the Settings.ini in the Directory).
+
+Have Fun, if you like the Game Support them with a Donation or Buy Lootboxes :)
