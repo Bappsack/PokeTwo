@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <object type="TAForm" name="Form1_1">
 	<properties>
-		<property name="Left" vt="Int16">150</property>
-		<property name="Top" vt="Int8">111</property>
-		<property name="Width" vt="Int16">698</property>
-		<property name="Height" vt="Int16">347</property>
+		<property name="Left" vt="Int16">147</property>
+		<property name="Top" vt="Int16">138</property>
+		<property name="Width" vt="Int16">696</property>
+		<property name="Height" vt="Int16">374</property>
 		<property name="Caption" vt="String">Simple Bot for PokeOne v1.1.2</property>
 		<property name="Color" vt="Ident">clBtnFace</property>
 		<property name="Font.Charset" vt="Ident">DEFAULT_CHARSET</property>
@@ -35,7 +35,7 @@
 				<property name="Left" vt="Int8">8</property>
 				<property name="Top" vt="Int8">0</property>
 				<property name="Width" vt="Int16">281</property>
-				<property name="Height" vt="Int16">305</property>
+				<property name="Height" vt="Int16">329</property>
 				<property name="CtrlStyle" vt="Int32">1342308359</property>
 				<property name="CtrlExStyle" vt="Int8">0</property>
 				<property name="Caption" vt="String">Bot Log:</property>
@@ -48,7 +48,7 @@
 						<property name="Left" vt="Int8">8</property>
 						<property name="Top" vt="Int8">16</property>
 						<property name="Width" vt="Int16">265</property>
-						<property name="Height" vt="Int16">281</property>
+						<property name="Height" vt="Int16">305</property>
 						<property name="Lines.Strings" vt="List">
 							<list>
 								<li vt="String">Edit1</li>
@@ -494,7 +494,7 @@
 				<property name="Left" vt="Int16">296</property>
 				<property name="Top" vt="Int16">248</property>
 				<property name="Width" vt="Int16">177</property>
-				<property name="Height" vt="Int8">57</property>
+				<property name="Height" vt="Int8">81</property>
 				<property name="CtrlStyle" vt="Int32">1342308359</property>
 				<property name="CtrlExStyle" vt="Int8">0</property>
 				<property name="Caption" vt="String">Shiny Hunt (Fishing)</property>
@@ -504,9 +504,9 @@
 			<components>
 				<object type="TACombo" name="Combo1">
 					<properties>
-						<property name="Left" vt="Int8">96</property>
+						<property name="Left" vt="Int8">104</property>
 						<property name="Top" vt="Int8">24</property>
-						<property name="Width" vt="Int8">73</property>
+						<property name="Width" vt="Int8">65</property>
 						<property name="Height" vt="Int8">25</property>
 						<property name="ItemHeight" vt="Int8">13</property>
 						<property name="TabOrder" vt="Int8">0</property>
@@ -539,7 +539,37 @@
 					</properties>
 					<components/>
 				</object>
+				<object type="TAButton" name="Button2">
+					<properties>
+						<property name="Left" vt="Int8">8</property>
+						<property name="Top" vt="Int8">56</property>
+						<property name="Width" vt="Int16">163</property>
+						<property name="Height" vt="Int8">17</property>
+						<property name="Caption" vt="String">Reset Coordinations</property>
+						<property name="TabOrder" vt="Int8">2</property>
+						<property name="Color" vt="Ident">clBtnFace</property>
+						<property name="CtrlStyle" vt="Int32">1342373888</property>
+						<property name="CtrlExStyle" vt="Int8">0</property>
+						<property name="Resizing" vt="Set">DockWidth, DockHeight</property>
+					</properties>
+					<components/>
+				</object>
 			</components>
+		</object>
+		<object type="TAButton" name="Button3">
+			<properties>
+				<property name="Left" vt="Int16">480</property>
+				<property name="Top" vt="Int16">304</property>
+				<property name="Width" vt="Int16">195</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">Quit</property>
+				<property name="TabOrder" vt="Int8">8</property>
+				<property name="Color" vt="Ident">clBtnFace</property>
+				<property name="CtrlStyle" vt="Int32">1342373888</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockWidth, DockHeight</property>
+			</properties>
+			<components/>
 		</object>
 	</components>
 </object>

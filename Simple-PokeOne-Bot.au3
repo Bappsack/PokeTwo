@@ -72,7 +72,7 @@ Global $PokemonFainted = 0
 Global $Paused
 
 #Region ### START Koda GUI section ### Form=c:\users\chris\documents\github\simple-pokeone-bot\gui\form1.kxf
-$Form1_1 = GUICreate("Simple Bot for PokeOne v1.1.2", 681, 336, 147, 138)
+$Form1_1 = GUICreate("Simple Bot for PokeOne v1.3", 681, 336, 147, 138)
 $Group1 = GUICtrlCreateGroup("Bot Log:", 8, 0, 281, 329)
 $Edit1 = GUICtrlCreateEdit("", 16, 16, 265, 305)
 GUICtrlSetData(-1, "Edit1")
@@ -703,6 +703,7 @@ Func ShinyFound()
 EndFunc   ;==>ShinyFound
 
 Func _pause()
+			WinSetOnTop("PokeOne", "", 0)
 	_ClearLog()
 	$EndTime = _NowTime()
 	$CurrentTime = "[" & $EndTime & "]: "
@@ -717,6 +718,7 @@ Func _pause()
 EndFunc   ;==>_pause
 
 Func _stop()
+			WinSetOnTop("PokeOne", "", 0)
 	_Save_Settings()
 	Exit
 EndFunc   ;==>_stop
