@@ -21,6 +21,9 @@
 ;
 ; Create Settings.ini if it don't Exist
 ;
+
+Run(@LocalAppDataDir & "\PokeONE\files\PokeOne.exe")
+
 If Not FileExists(@ScriptDir & "\Settings.ini") Then
 	; Hotkeys
 	IniWrite(@ScriptDir & "\Settings.ini", "HotKeys", "Start", "{F5}")
@@ -650,7 +653,7 @@ Func Test_Logout()
 				UpdateLog("Re-Open Game...")
 				ProcessClose("PokeOne.exe")
 				Sleep(1000)
-				Run("C:\Users\" & @UserName & "\AppData\Local\PokeOne\files\PokeOne.exe")
+				Run(@LocalAppDataDir & "\PokeONE\files\PokeOne.exe")
 				Sleep(5000)
 				$RelogAttemps = 0
 			EndIf
@@ -703,7 +706,7 @@ Func ShinyFound()
 EndFunc   ;==>ShinyFound
 
 Func _pause()
-			WinSetOnTop("PokeOne", "", 0)
+	WinSetOnTop("PokeOne", "", 0)
 	_ClearLog()
 	$EndTime = _NowTime()
 	$CurrentTime = "[" & $EndTime & "]: "
@@ -718,7 +721,7 @@ Func _pause()
 EndFunc   ;==>_pause
 
 Func _stop()
-			WinSetOnTop("PokeOne", "", 0)
+	WinSetOnTop("PokeOne", "", 0)
 	_Save_Settings()
 	Exit
 EndFunc   ;==>_stop
