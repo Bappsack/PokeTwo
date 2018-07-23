@@ -2,14 +2,21 @@
 
 This is a Simple Bot for PokeOne, expect not to much, this is only a Pixel Based Bot for Shiny Hunting or Lazy Leveling.
 
-PokeONE need to be on 800x600 Resolition and always in Focus & Top because it Send Key Inputs for Walking and need to see the Window to Detect Screen Positions for Bot States.
+
+Important Notes:
+
+- PokeONE need to be on 800x600 Resolition.
+- PokeOne need to be always in Top/Focus for Sending Keys and Scanning the Screen.
+- Use the Bot for your own Risk, botting is not allowed in This Game and could result a Ban.
+- I am not responsible if you get banned.
 
 
 Features:
 
-- Shiny Hunting (only for Wild Encounters)
+- Shiny Hunting (Wild and Fishing Encounters)
 - EXP Farming ( it just use the Moves 1-4 and Auto Switch the Pokemon, if u have no Pokemon Left the Bot will Stop).
-- Auto Reconnect
+- Live Encounter Display for OBS or other.
+
 
 HotKeys:
 
@@ -19,6 +26,6 @@ HotKeys:
 
 (HotKeys can be changed in the Settings.ini in the Directory).
 
-This Bot is just a maybe 1h Project, there will be in Future better Bots via TCP Packets or something, u can just use it now for waiting for a better Bot :)
+Have Fun, if you like the Game Support them with a Donation or Buy Lootboxes :)
 
-Repository will get Updates and Fixes when i have Time, i  personally use it for Shiny Hunting only atm.
+Discord Server: https://discord.gg/RwJSxPP
