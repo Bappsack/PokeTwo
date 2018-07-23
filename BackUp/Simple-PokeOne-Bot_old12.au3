@@ -60,29 +60,32 @@ $Auto_Relog = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Auto_Relog"
 $Save_Encounters_TXT = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Save_Encounters_TXT", "0")
 $Bot_Mode = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode", "1")
 $Encounter = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounter", "0")
-$FishingCoordsX = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationsX", "0")
-$FishingCoordsY = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationsY", "0")
+$FishingCoordsX = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationX", "0")
+$FishingCoordsY = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationY", "0")
 $FishingDirection = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingDirection", "0")
 
+MsgBox(0,"",$FishingCoordsX & "," & $FishingCoordsY )
 
 $PokemonFainted = 0
 ; #############################################################################################
 
+
+
 Global $Paused
 
-#Region ### START Koda GUI section ### Form=C:\Users\Chris\Documents\GitHub\Simple-PokeOne-Bot\GUI\Form1.kxf
-$Form1_1 = GUICreate("Simple Bot for PokeOne v1.1.2", 683, 309, 150, 111)
+#Region ### START Koda GUI section ### Form=c:\users\chris\documents\github\simple-pokeone-bot\gui\form1.kxf
+$Form1_1 = GUICreate("Simple Bot for PokeOne v1.1.2", 676, 311, 150, 111)
 $Group1 = GUICtrlCreateGroup("Bot Log:", 8, 0, 281, 305)
 $Edit1 = GUICtrlCreateEdit("", 16, 16, 265, 281)
-GUICtrlSetData(-1, "")
+GUICtrlSetData(-1, "Edit1")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Group2 = GUICtrlCreateGroup("Status", 296, 0, 177, 97)
 $Label1 = GUICtrlCreateLabel("Current State", 304, 24, 66, 17)
 $Label2 = GUICtrlCreateLabel("Bot not running", 384, 24, 76, 17)
 $Label3 = GUICtrlCreateLabel("Start Time:", 304, 48, 55, 17)
-$Label4 = GUICtrlCreateLabel("n/A", 384, 48, 78, 17)
+$Label4 = GUICtrlCreateLabel("n/A", 384, 48, 22, 17)
 $Label5 = GUICtrlCreateLabel("End Time:", 304, 72, 52, 17)
-$Label6 = GUICtrlCreateLabel("n/A", 384, 72, 78, 17)
+$Label6 = GUICtrlCreateLabel("n/A", 384, 72, 22, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Group3 = GUICtrlCreateGroup("Bot Settings:", 480, 0, 193, 169)
 $Checkbox1 = GUICtrlCreateCheckbox("Alert when Shiny Found Music", 488, 24, 177, 17)
@@ -94,16 +97,16 @@ $Checkbox6 = GUICtrlCreateCheckbox("Auto Relogging", 488, 120, 177, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Group4 = GUICtrlCreateGroup("Shiny Hunt Log:", 296, 96, 177, 73)
 $Label7 = GUICtrlCreateLabel("Encounters: ", 304, 120, 64, 17)
-$Label8 = GUICtrlCreateLabel("n/A", 408, 120, 54, 17)
+$Label8 = GUICtrlCreateLabel("n/A", 408, 120, 22, 17)
 $Label9 = GUICtrlCreateLabel("Latest Encounters: ", 304, 144, 96, 17)
-$Label10 = GUICtrlCreateLabel("n/A", 408, 144, 54, 17)
+$Label10 = GUICtrlCreateLabel("n/A", 408, 144, 22, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Button1 = GUICtrlCreateButton("Start", 480, 272, 195, 25)
 $Group6 = GUICtrlCreateGroup("Level Bot Log", 296, 168, 177, 81)
 $Label11 = GUICtrlCreateLabel("Encounters: ", 304, 192, 64, 17)
-$Label12 = GUICtrlCreateLabel("n/A", 408, 192, 54, 17)
+$Label12 = GUICtrlCreateLabel("n/A", 408, 192, 22, 17)
 $Label13 = GUICtrlCreateLabel("Pokemon Fainted: ", 304, 216, 93, 17)
-$Label14 = GUICtrlCreateLabel("n/A", 408, 216, 54, 17)
+$Label14 = GUICtrlCreateLabel("n/A", 408, 216, 22, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Group5 = GUICtrlCreateGroup("Bot Mode Settings", 480, 168, 193, 97)
 $Radio1 = GUICtrlCreateRadio("Shiny Hunt Bot", 488, 192, 113, 17)
@@ -111,7 +114,7 @@ $Radio2 = GUICtrlCreateRadio("Level Bot (not completly finished)", 488, 216, 177
 $Radio3 = GUICtrlCreateRadio("Shiny Hunt (Fishing)", 488, 240, 177, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Group7 = GUICtrlCreateGroup("Shiny Hunt (Fishing)", 296, 248, 177, 57)
-$Combo1 = GUICtrlCreateCombo("UP", 392, 272, 73, 25, BitOR($CBS_DROPDOWN, $CBS_AUTOHSCROLL))
+$Combo1 = GUICtrlCreateCombo("UP", 392, 272, 73, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "DOWN|LEFT|RIGHT")
 $Label15 = GUICtrlCreateLabel("Fishing Direction", 304, 272, 82, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -135,16 +138,6 @@ ElseIf $Bot_Mode = 2 Then
 Else
 	GUICtrlSetState($Radio3, 1)
 EndIf
-
-If $FishingDirection = "LEFT" Then
-	GUICtrlSetData($Combo1, "LEFT")
-ElseIf $FishingDirection = "RIGHT" Then
-	GUICtrlSetData($Combo1, "RIGHT")
-ElseIf $FishingDirection = "DOWN" Then
-	GUICtrlSetData($Combo1, "DOWN")
-EndIf
-
-
 ;
 ; Apply Hotkeys
 
@@ -154,8 +147,8 @@ HotKeySet($StopKey, "_stop")
 
 
 
-$Time = _NowTime()
-GUICtrlSetData($Edit1, "[" & $Time & "]: PokeOne Simple Bot Ready!")
+
+UpdateLog("PokeOne Simple Bot Ready!")
 
 
 
@@ -171,8 +164,6 @@ While 1
 			$Bot_Mode = 1
 		Case $Radio2
 			$Bot_Mode = 2
-		Case $Radio3
-			$Bot_Mode = 3
 	EndSwitch
 WEnd
 
@@ -187,15 +178,11 @@ Func _go()
 	If $c[0] = 800 And $c[1] = 600 Then
 		UpdateLog("PokeOne Resultion is Valid: " & $c[0] & "," & $c[1])
 
-	ElseIf $c[0] = 0 Then
-		UpdateLog("PokeOne is not 800x600 Resolution!")
-		Return
 	Else
-
-		UpdateLog("PokeOne is minimized!")
+		UpdateLog("PokeOne is not 800x600 Resolution!")
+		UpdateLog("Your Resolution is: " & $c[0] & "," & $c[1] & ", or not Vissible.")
 		Return
 	EndIf
-
 	If $Set_Game_Focus = 1 Then
 		UpdateLog("Set PokeOne always on Top.")
 		WinSetOnTop("PokeOne", "", 1)
@@ -237,17 +224,32 @@ Func _go()
 		; Check for Overwold
 		$overworld = PixelSearch($ClientPos[0] + "63", $ClientPos[1] + "25", $ClientPos[0] + "165", $ClientPos[1] + "41", 0xFF3232)
 		If IsArray($overworld) Then
+			;UpdateLog( "Overworld Detected, walking left and right to Trigger Wild Encounter!")
 			Overworld()
 		EndIf
 		; Check for Battle
 		$Battle = PixelSearch($ClientPos[0] + "345", $ClientPos[1] + "499", $ClientPos[0] + "457", $ClientPos[1] + "523", 0x962624)
 		If IsArray($Battle) Then
+			;UpdateLog("Fight Button Detected, Checking for Shiny")
 			If $Bot_Mode = 1 Or $Bot_Mode = 3 Then
 				ShinyHunt($Battle[0], $Battle[1])
 			ElseIf $Bot_Mode = 2 Then
 				ShinyHunt($Battle[0], $Battle[1])
 			EndIf
 		EndIf
+
+		;		MouseMove($ClientPos[0] +470, $ClientPos[1] +30)
+		;		Sleep(1000)
+		;		MouseMove($ClientPos[0] + 790,$ClientPos[1] + 364)
+
+
+
+
+		;MsgBox(0,"",$Fishing[0] & "," & $Fishing[1] )
+		;	MouseClick("LEFT",$ClientPos[0] + $Fishing[0],$ClientPos[1] + $Fishing[1],5)
+
+
+
 
 		If $Bot_Mode = 2 Then
 			$SwitchPokemon = PixelSearch($ClientPos[0] + "317", $ClientPos[1] + "138", $ClientPos[0] + "482", $ClientPos[1] + "150", 0xFFFFFF)
@@ -274,20 +276,10 @@ Func Overworld()
 	Sleep(150)
 	$OldMousePos = MouseGetPos()
 
-	If $Bot_Mode = 3 Then
-		If $FishingCoordsX = 0 Then
+If $Bot_Mode = 3 Then
+		If $FishingCoordsX And $FishingCoordsY = 0 Then
 			InputBox("Fishing Rod Coordinations", "Hover your Mouse over the Fishing Rod u want to Use and Press [ENTER] (Make Sure this InputBox is on Top)")
 			$FishingCoords = MouseGetPos()
-			$winpos = WinGetPos("PokeOne")
-
-			$FishingCoordsX = $FishingCoords[0] - $winpos[0]
-			$FishingCoordsY = $FishingCoords[1] - $winpos[1]
-
-			If Not $FishingCoordsX = 0 Then
-				IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationsX", $FishingCoordsX)
-				IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationsY", $FishingCoordsY)
-
-			EndIf
 		EndIf
 
 
@@ -301,50 +293,21 @@ Func Overworld()
 			Send("{RIGHT DOWN}")
 			Sleep(700)
 			Send("{RIGHT UP}")
-			Sleep(100)
-			If $FishingDirection = "UP" Then
-				Send("{UP}")
-			ElseIf $FishingDirection = "DOWN" Then
-				Send("{DOWN}")
-			ElseIf $FishingDirection = "LEFT" Then
-				Send("{LEFT}")
-
-			ElseIf $FishingDirection = "RIGHT" Then
-				Send("{RIGHT}")
-
-			EndIf
-			Sleep(100)
+			Sleep(1000)
+			Send("{DOWN}")
+			Sleep(1000)
 		Else
 			GUICtrlSetData($Label2, "Using Rod")
-			MouseClick("LEFT", $ClientPos[0] + $FishingCoordsX, $ClientPos[1] - 30 + $FishingCoordsY, 5)
+			MouseClick("LEFT", $FishingCoords[0], $FishingCoords[1], 5)
 			Sleep(5000)
 		EndIf
 
 	Else
 
 
-		If $Simulate_Human_Walking = 1 Then
-			$rnd = Random(0, 1, 1)
-			If $rnd = 0 Then
-				Send("{LEFT DOWN}")
-				Sleep(700)
-				Send("{LEFT UP}")
-				Sleep(10)
-				Send("{RIGHT DOWN}")
-				Sleep(700)
-				Send("{RIGHT UP}")
-			ElseIf $rnd = 1 Then
-				Send("{RIGHT DOWN}")
-				Sleep(700)
-				Send("{RIGHT UP}")
-				Sleep(10)
-				Send("{LEFT DOWN}")
-				Sleep(700)
-				Send("{LEFT UP}")
-
-			EndIf
-
-		Else
+	If $Simulate_Human_Walking = 1 Then
+		$rnd = Random(0, 1, 1)
+		If $rnd = 0 Then
 			Send("{LEFT DOWN}")
 			Sleep(700)
 			Send("{LEFT UP}")
@@ -352,6 +315,7 @@ Func Overworld()
 			Send("{RIGHT DOWN}")
 			Sleep(700)
 			Send("{RIGHT UP}")
+		ElseIf $rnd = 1 Then
 			Send("{RIGHT DOWN}")
 			Sleep(700)
 			Send("{RIGHT UP}")
@@ -359,8 +323,26 @@ Func Overworld()
 			Send("{LEFT DOWN}")
 			Sleep(700)
 			Send("{LEFT UP}")
+
 		EndIf
-		Send("{SPACE}")
+
+	Else
+		Send("{LEFT DOWN}")
+		Sleep(700)
+		Send("{LEFT UP}")
+		Sleep(10)
+		Send("{RIGHT DOWN}")
+		Sleep(700)
+		Send("{RIGHT UP}")
+		Send("{RIGHT DOWN}")
+		Sleep(700)
+		Send("{RIGHT UP}")
+		Sleep(10)
+		Send("{LEFT DOWN}")
+		Sleep(700)
+		Send("{LEFT UP}")
+	EndIf
+	Send("{SPACE}")
 	EndIf
 
 EndFunc   ;==>Overworld
@@ -475,8 +457,6 @@ Func ShinyHunt($X, $Y)
 	If IsArray($Shiny) Then
 		MouseMove($Shiny[0], $Shiny[1])
 		GUICtrlSetData($Label2, "Shiny Found :)")
-		$Encounter = 0
-		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounter", $Encounter)
 		UpdateLog("Shiny found after " & $Encounter & " Encounters, Bot paused!")
 		ShinyFound()
 
@@ -642,20 +622,20 @@ Func _Save_Settings()
 	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Auto_Relog", GUICtrlRead($Checkbox5))
 	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Save_Encounters_TXT", GUICtrlRead($Checkbox6))
 
-	If Not $FishingCoordsX = 0 Then
+	if  Not $FishingCoordsX = 0 and $FishingCoordsY = 0 then
 		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationsX", $FishingCoordsX)
-		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationsY", $FishingCoordsY)
+				IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationsY", $FishingCoordsY)
 
 	EndIf
-	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingDirection", GUICtrlRead($Combo1))
+		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingDirection", GUICtrlRead($Combo1))
 
 
-	If GUICtrlRead($Radio1) = 1 Then
+	If $Bot_Mode = 1 Then
 		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode", 1)
-	ElseIf GUICtrlRead($Radio2) = 1 Then
+	Elseif $Bot_Mode = 2 Then
 		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode", 2)
-	ElseIf GUICtrlRead($Radio3) = 1 Then
-		IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode", 3)
+	Else
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Bot_Mode", 3)
 	EndIf
 	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounter", $Encounter)
 EndFunc   ;==>_Save_Settings

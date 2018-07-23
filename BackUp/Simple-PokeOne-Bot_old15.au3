@@ -111,7 +111,7 @@ $Radio2 = GUICtrlCreateRadio("Level Bot (not completly finished)", 488, 216, 177
 $Radio3 = GUICtrlCreateRadio("Shiny Hunt (Fishing)", 488, 240, 177, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Group7 = GUICtrlCreateGroup("Shiny Hunt (Fishing)", 296, 248, 177, 57)
-$Combo1 = GUICtrlCreateCombo("UP", 392, 272, 73, 25, BitOR($CBS_DROPDOWN, $CBS_AUTOHSCROLL))
+$Combo1 = GUICtrlCreateCombo("UP", 392, 272, 73, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "DOWN|LEFT|RIGHT")
 $Label15 = GUICtrlCreateLabel("Fishing Direction", 304, 272, 82, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -316,7 +316,7 @@ Func Overworld()
 			Sleep(100)
 		Else
 			GUICtrlSetData($Label2, "Using Rod")
-			MouseClick("LEFT", $ClientPos[0] + $FishingCoordsX, $ClientPos[1] - 30 + $FishingCoordsY, 5)
+			MouseClick("LEFT", $ClientPos[0] + $FishingCoordsX, $ClientPos[1] -30 + $FishingCoordsY, 5)
 			Sleep(5000)
 		EndIf
 
