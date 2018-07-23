@@ -27,3 +27,5 @@ HotKeys:
 (HotKeys can be changed in the Settings.ini in the Directory).
 
 Have Fun, if you like the Game Support them with a Donation or Buy Lootboxes :)
+
+Discord Server: https://discord.gg/RwJSxPP
