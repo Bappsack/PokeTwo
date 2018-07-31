@@ -93,7 +93,10 @@ $FishingCoordsX = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Fishing
 $FishingCoordsY = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingCoordinationsY", "0")
 $FishingDirection = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "FishingDirection", "0")
 $Auto_Catch = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "AutoCatch", "0")
+$Use_Pkmn_DB = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "UsePKMNDB", "0")
+$Speedhack = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "Speedhack", "0")
 $Auto_Catch_Pokemon = IniRead(@ScriptDir & "\Settings.ini", "Bot Settings", "AutoCatchPokemon", "Bulbasaur")
+
 Global $RelogAttemps = 0
 Global $PokemonFainted = 0
 
@@ -126,64 +129,72 @@ $Empty = 0x787878
 $GenderMale = 0x2284E9
 $GenderFemale = 0xF080E2
 $CatchAttemps = 1
+
+$New_Speed = 0
+$Old_Speed = 0
 ; #############################################################################################
 
 Global $Paused
 
 #Region ### START Koda GUI section ### Form=c:\users\chris\documents\github\simple-pokeone-bot\gui\form1.kxf
-$Form1_1 = GUICreate("Simple Bot for PokeOne v1.1.2", 911, 335, 235, 138)
-$Group1 = GUICtrlCreateGroup("Bot Log:", 8, 0, 313, 329)
-$Edit1 = GUICtrlCreateEdit("", 16, 16, 297, 305)
+$Form1_1 = GUICreate("Simple Bot for PokeOne v1.1.2", 787, 415, 180, 124)
+$Group1 = GUICtrlCreateGroup("Bot Log:", 8, 0, 377, 409)
+$Edit1 = GUICtrlCreateEdit("", 16, 16, 361, 385, BitOR($GUI_SS_DEFAULT_EDIT, $ES_READONLY))
 GUICtrlSetData(-1, "Edit1")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group2 = GUICtrlCreateGroup("Status", 328, 0, 177, 97)
-$Label1 = GUICtrlCreateLabel("Current State", 336, 24, 66, 17)
-$Label2 = GUICtrlCreateLabel("Bot not running", 416, 24, 84, 17)
-$Label3 = GUICtrlCreateLabel("Start Time:", 336, 48, 55, 17)
-$Label4 = GUICtrlCreateLabel("n/A", 416, 48, 22, 17)
-$Label5 = GUICtrlCreateLabel("End Time:", 336, 72, 52, 17)
-$Label6 = GUICtrlCreateLabel("n/A", 416, 72, 22, 17)
+$Group2 = GUICtrlCreateGroup("Status", 392, 0, 177, 97)
+$Label1 = GUICtrlCreateLabel("Current State", 400, 24, 66, 17)
+$Label2 = GUICtrlCreateLabel("Bot not running", 480, 24, 89, 17)
+$Label3 = GUICtrlCreateLabel("Start Time:", 400, 48, 55, 17)
+$Label4 = GUICtrlCreateLabel("n/A", 480, 48, 62, 17)
+$Label5 = GUICtrlCreateLabel("End Time:", 400, 72, 52, 17)
+$Label6 = GUICtrlCreateLabel("n/A", 480, 72, 62, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group3 = GUICtrlCreateGroup("Bot Settings:", 512, 0, 193, 193)
-$Checkbox1 = GUICtrlCreateCheckbox("Alert when Shiny Found Music", 520, 24, 177, 17)
-$Checkbox2 = GUICtrlCreateCheckbox("Avoid Disconnecting after Found", 520, 48, 177, 17)
-$Checkbox3 = GUICtrlCreateCheckbox("Simulate Human-Like Walking", 520, 72, 177, 17)
-$Checkbox4 = GUICtrlCreateCheckbox("Set Game on Focus", 520, 96, 177, 17)
-$Checkbox5 = GUICtrlCreateCheckbox("Save Encounters in Text File", 520, 144, 177, 17)
-$Checkbox6 = GUICtrlCreateCheckbox("Auto Relogging", 520, 120, 177, 17)
-$Checkbox7 = GUICtrlCreateCheckbox("Auto Catch", 520, 168, 97, 17)
+$Group3 = GUICtrlCreateGroup("Bot Settings:", 576, 0, 201, 305)
+$Checkbox1 = GUICtrlCreateCheckbox("Alert when Shiny Found Music", 584, 24, 177, 17)
+$Checkbox2 = GUICtrlCreateCheckbox("Avoid Disconnecting after Found", 584, 48, 177, 17)
+$Checkbox3 = GUICtrlCreateCheckbox("Simulate Human-Like Walking", 584, 72, 177, 17)
+$Checkbox4 = GUICtrlCreateCheckbox("Set Game on Focus", 584, 96, 177, 17)
+$Checkbox5 = GUICtrlCreateCheckbox("Save Encounters in Text File", 584, 144, 177, 17)
+$Checkbox6 = GUICtrlCreateCheckbox("Auto Relogging", 584, 120, 177, 17)
+$Checkbox7 = GUICtrlCreateCheckbox("Auto Catch", 584, 168, 97, 17)
+$Checkbox8 = GUICtrlCreateCheckbox("Use Pokemon Database", 584, 192, 177, 17)
+$Button4 = GUICtrlCreateButton("Button4", 664, 200, 1, 9)
+$Checkbox9 = GUICtrlCreateCheckbox("Speedhack ( Mount Speed )", 584, 216, 177, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group4 = GUICtrlCreateGroup("Shiny Hunt Log:", 328, 96, 177, 73)
-$Label7 = GUICtrlCreateLabel("Encounters: ", 336, 120, 64, 17)
-$Label8 = GUICtrlCreateLabel("n/A", 440, 120, 22, 17)
-$Label9 = GUICtrlCreateLabel("Latest Encounters: ", 336, 144, 96, 17)
-$Label10 = GUICtrlCreateLabel("n/A", 440, 144, 22, 17)
+$Group4 = GUICtrlCreateGroup("Shiny Hunt Log:", 392, 96, 177, 73)
+$Label7 = GUICtrlCreateLabel("Encounters: ", 400, 120, 64, 17)
+$Label8 = GUICtrlCreateLabel("n/A", 504, 120, 22, 17)
+$Label9 = GUICtrlCreateLabel("Latest Encounters: ", 400, 144, 96, 17)
+$Label10 = GUICtrlCreateLabel("n/A", 504, 144, 22, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Button1 = GUICtrlCreateButton("Start", 712, 160, 195, 25)
-$Group6 = GUICtrlCreateGroup("Level Bot Log", 328, 168, 177, 81)
-$Label11 = GUICtrlCreateLabel("Encounters: ", 336, 192, 64, 17)
-$Label12 = GUICtrlCreateLabel("n/A", 440, 192, 22, 17)
-$Label13 = GUICtrlCreateLabel("Pokemon Fainted: ", 336, 216, 93, 17)
-$Label14 = GUICtrlCreateLabel("n/A", 440, 216, 22, 17)
+$Button1 = GUICtrlCreateButton("Start", 392, 336, 179, 25)
+$Group6 = GUICtrlCreateGroup("Level Bot Log", 392, 168, 177, 81)
+$Label11 = GUICtrlCreateLabel("Encounters: ", 400, 192, 64, 17)
+$Label12 = GUICtrlCreateLabel("n/A", 504, 192, 22, 17)
+$Label13 = GUICtrlCreateLabel("Pokemon Fainted: ", 400, 216, 93, 17)
+$Label14 = GUICtrlCreateLabel("n/A", 504, 216, 22, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group5 = GUICtrlCreateGroup("Bot Mode Settings", 712, 0, 193, 97)
-$Radio1 = GUICtrlCreateRadio("Shiny Hunt Bot", 720, 24, 113, 17)
-$Radio2 = GUICtrlCreateRadio("Level Bot (not completly finished)", 720, 48, 177, 17)
-$Radio3 = GUICtrlCreateRadio("Shiny Hunt (Fishing)", 720, 72, 177, 17)
+$Group5 = GUICtrlCreateGroup("Bot Mode Settings", 576, 304, 201, 97)
+$Radio1 = GUICtrlCreateRadio("Shiny Hunt Bot", 584, 328, 113, 17)
+$Radio2 = GUICtrlCreateRadio("Level Bot (not completly finished)", 584, 352, 177, 17)
+$Radio3 = GUICtrlCreateRadio("Shiny Hunt (Fishing)", 584, 376, 177, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group7 = GUICtrlCreateGroup("Shiny Hunt (Fishing)", 328, 248, 177, 81)
-$Combo1 = GUICtrlCreateCombo("UP", 432, 272, 65, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL))
+$Group7 = GUICtrlCreateGroup("Shiny Hunt (Fishing)", 392, 248, 177, 81)
+$Combo1 = GUICtrlCreateCombo("UP", 496, 272, 65, 25, BitOR($CBS_DROPDOWN, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "DOWN|LEFT|RIGHT")
-$Label15 = GUICtrlCreateLabel("Fishing Direction", 336, 272, 82, 17)
-$Button2 = GUICtrlCreateButton("Reset Coordinations", 336, 304, 163, 17)
+$Label15 = GUICtrlCreateLabel("Fishing Direction", 400, 272, 82, 17)
+$Button2 = GUICtrlCreateButton("Reset Coordinations", 400, 304, 163, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Button3 = GUICtrlCreateButton("Quit", 712, 192, 195, 25)
-$Group8 = GUICtrlCreateGroup("Auto Catch Settings", 712, 96, 185, 57)
-$Label16 = GUICtrlCreateLabel("Catch Pokemon:", 720, 120, 83, 17)
-$Input1 = GUICtrlCreateInput("Bulbasaur", 808, 120, 81, 21)
+$Button3 = GUICtrlCreateButton("Quit", 392, 368, 179, 25)
+$Group8 = GUICtrlCreateGroup("Auto Catch Settings", 584, 240, 185, 57)
+$Label16 = GUICtrlCreateLabel("Catch Pokemon:", 592, 264, 83, 17)
+$Input1 = GUICtrlCreateInput("Bulbasaur", 680, 264, 81, 21)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
+
+
 
 
 ; Apply Settings
@@ -195,10 +206,11 @@ GUICtrlSetState($Checkbox4, $Set_Game_Focus)
 GUICtrlSetState($Checkbox5, $Save_Encounters_TXT)
 GUICtrlSetState($Checkbox6, $Auto_Relog)
 GUICtrlSetState($Checkbox7, $Auto_Catch)
-GUICtrlSetData($Input1,$Auto_Catch_Pokemon)
+GUICtrlSetData($Input1, $Auto_Catch_Pokemon)
 GUICtrlSetData($Label10, $Encounter)
 GUICtrlSetData($Label12, $BattleEncounter)
-
+GUICtrlSetState($Checkbox8, $Use_Pkmn_DB)
+GUICtrlSetState($Checkbox9, $Speedhack)
 If $Bot_Mode = 1 Then
 	GUICtrlSetState($Radio1, 1)
 ElseIf $Bot_Mode = 2 Then
@@ -220,9 +232,9 @@ EndIf
 HotKeySet($StartKey, "_Runbot")
 HotKeySet($PauseKey, "_pause")
 HotKeySet($StopKey, "_stop")
-
 $Time = _NowTime()
 GUICtrlSetData($Edit1, "[" & $Time & "]: PokeOne Simple Bot Ready!")
+;_Speedhack()
 
 While 1
 	$nMsg = GUIGetMsg()
@@ -345,12 +357,17 @@ Func _Runbot()
 		Return
 	EndIf
 
+
 	$ClientPos = WinGetPos("PokeOne", "")
 	;$ClientPos[1] = $ClientPos[1] + "30"
 	Sleep(150)
 	$OldMousePos = MouseGetPos()
 	WinActivate("PokeOne")
-	_ScreenCapture_Capture(@MyDocumentsDir & "\GDIPlus_Image1.jpg")
+
+	If $Speedhack = 1 Then
+		_Speedhack()
+	EndIf
+
 
 	$Paused = True
 	Do
@@ -359,10 +376,14 @@ Func _Runbot()
 		$ClientPos = WinGetPos("PokeOne")
 		Test_Logout()
 		GUICtrlSetData($Label2, "Checking")
+		if $Speedhack = 1 Then
+		Apply_Speedhack()
+		EndIf
+			_Reload_Settings()
 
 		; Check for Shiny Hunt Fishing
 
-		# OLD Overworld Detection
+		; OLD Overworld Detection
 		; Check for Overwold
 		$overworld = PixelSearch($ClientPos[0] + "15", $ClientPos[1] + "70", $ClientPos[0] + "53", $ClientPos[1] + "91", 0xC7C8C9)
 		If IsArray($overworld) Then
@@ -370,10 +391,10 @@ Func _Runbot()
 		EndIf
 
 		#cs
-		$OverworldCheck = _ReadPokemon(2)
-		if $OverworldCheck = 1 Then
+			$OverworldCheck = _ReadPokemon(2)
+			if $OverworldCheck = 1 Then
 			Overworld()
-		EndIf
+			EndIf
 		#ce
 
 		; Check for Battle
@@ -406,6 +427,7 @@ EndFunc   ;==>_Runbot
 
 Func Overworld()
 	Test_Logout()
+
 	$RelogAttemps = 0
 	GUICtrlSetData($Label2, "Overworld")
 
@@ -440,7 +462,7 @@ Func Overworld()
 
 
 		$FishingCooldown = PixelSearch($ClientPos[0] + 435, $ClientPos[1] + 8, $ClientPos[0] + 460, $ClientPos[1] + 30, 0xD73028)
-	If IsArray($FishingCooldown) Then
+		If IsArray($FishingCooldown) Then
 			GUICtrlSetData($Label2, "Fishing Cooldown")
 			Send("{LEFT DOWN}")
 			Sleep(700)
@@ -474,7 +496,7 @@ Func Overworld()
 				Send("{RIGHT}")
 			EndIf
 
-			_SendClick("left", $FishingCoordsX, $FishingCoordsY,5)
+			_SendClick("left", $FishingCoordsX, $FishingCoordsY, 5)
 
 			Sleep(2000)
 		EndIf
@@ -573,7 +595,7 @@ Func LevelBot()
 		Else
 			$Move4Empty = False
 		EndIf
-		$i = $i +1
+		$i = $i + 1
 	Next
 
 
@@ -589,10 +611,10 @@ Func LevelBot()
 			_SendClick("left", 498, 462, 5)
 		ElseIf $Move3Empty = False Then
 			UpdateLog("Move3:" & $MoveTypes[2] & " Selected!")
-			_SendClick("left", 306, 507, 5)
+			_SendClick("left", 306, 537, 5)
 		ElseIf $Move4Empty = False Then
 			UpdateLog("Move4:" & $MoveTypes[3] & " Selected!")
-			_SendClick("left", 494, 513, 5)
+			_SendClick("left", 494, 543, 5)
 		EndIf
 	EndIf
 
@@ -648,10 +670,12 @@ EndFunc   ;==>_CheckMoves
 
 Func ShinyHunt()
 	Test_Logout()
-	$PokemonName = _ReadPokemon(1)
-	UpdateLog("Pokemon: " & $PokemonName)
-	if $Auto_Catch = 1 Then
-	_AutoCatch()
+	If $Use_Pkmn_DB = 1 Then
+		$PokemonName = _ReadPokemon(1)
+		UpdateLog("Pokemon: " & $PokemonName)
+		If $Auto_Catch = 1 Then
+			_AutoCatch()
+		EndIf
 	EndIf
 
 	$ClientPos = WinGetPos("PokeOne", "")
@@ -662,7 +686,7 @@ Func ShinyHunt()
 
 	GUICtrlSetData($Label2, "Battle")
 
-	$Shiny = PixelSearch($ClientPos[0] + "15", $ClientPos[1] + "5", $ClientPos[0] + "88", $ClientPos[1] + "152", 0xFFF200, 105)
+	$Shiny = PixelSearch($ClientPos[0] + "15", $ClientPos[1] + "5", $ClientPos[0] + "88", $ClientPos[1] + "152", 0xFFF200, 100)
 	If IsArray($Shiny) Then
 		GUICtrlSetData($Label2, "Shiny Found :)")
 		$Encounter = 0
@@ -687,19 +711,19 @@ EndFunc   ;==>ShinyHunt
 
 Func _AutoCatch()
 
-$Pokemon = _ReadPokemon(1)
-if $Pokemon = GUICtrlRead($Input1) Then
-	UpdateLog("Wanted Pokemon Found ("&GUICtrlRead($Input1)&")!")
-	UpdateLog("Trying to Catch, Ball's thrown: " & $CatchAttemps)
+	$Pokemon = _ReadPokemon(1)
+	If $Pokemon = GUICtrlRead($Input1) Then
+		UpdateLog("Wanted Pokemon Found (" & GUICtrlRead($Input1) & ")!")
+		UpdateLog("Trying to Catch, Ball's thrown: " & $CatchAttemps)
 		_SendClick("left", 402, 596, 2)
 		_SendClick("left", 317, 197, 2)
 		_SendClick("left", 268, 230, 2)
 		Sleep(10000)
 		$CatchAttemps = $CatchAttemps + 1
 		_Runbot()
-EndIf
+	EndIf
 
-EndFunc
+EndFunc   ;==>_AutoCatch
 
 
 
@@ -800,15 +824,7 @@ Func Test_Logout()
 			_SendClick("left", 422, 428, 2)
 			Sleep(10000)
 			$RelogAttemps = $RelogAttemps + 1
-			If $RelogAttemps > 25 Then
-				UpdateLog("To many Attemps to Reconnects!")
-				UpdateLog("Re-Open Game...")
-				ProcessClose("PokeOne.exe")
-				Sleep(1000)
-				Run(@LocalAppDataDir & "\PokeONE\files\PokeOne.exe")
-				Sleep(5000)
-				$RelogAttemps = 0
-			EndIf
+
 		Else
 			Return
 		EndIf
@@ -906,6 +922,33 @@ Func _SendClick($Key, $X, $Y, $Amount)
 EndFunc   ;==>_SendClick
 
 
+
+Func _Reload_Settings()
+	$Alert_Music = GUICtrlRead($Checkbox1)
+	$Avoid_Disconnect = GUICtrlRead($Checkbox2)
+	$Simulate_Human_Walking = GUICtrlRead($Checkbox3)
+	$Set_Game_Focus = GUICtrlRead($Checkbox4)
+	$Auto_Relog =GUICtrlRead($Checkbox5)
+	$Save_Encounters_TXT = GUICtrlRead($Checkbox6)
+	$Auto_Catch = GUICtrlRead($Checkbox7)
+	$Auto_Catch =  GUICtrlRead($Input1)
+
+	$FishingDirection = GUICtrlRead($Combo1)
+
+
+	If GUICtrlRead($Radio1) = 1 Then
+		$Bot_Mode = 1
+	ElseIf GUICtrlRead($Radio2) = 1 Then
+		$Bot_Mode = 2
+	ElseIf GUICtrlRead($Radio3) = 1 Then
+		$Bot_Mode = 3
+	EndIf
+
+	$Use_Pkmn_DB =  GUICtrlRead($Checkbox8)
+	$Speedhack = GUICtrlRead($Checkbox9)
+EndFunc
+
+
 Func _Save_Settings()
 	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Alert_Music", GUICtrlRead($Checkbox1))
 	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Avoid_Disconnect", GUICtrlRead($Checkbox2))
@@ -933,12 +976,14 @@ Func _Save_Settings()
 	EndIf
 	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Encounter", $Encounter)
 	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "BattleEncounter", $BattleEncounter)
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "UsePKMNDB", GUICtrlRead($Checkbox8))
+	IniWrite(@ScriptDir & "\Settings.ini", "Bot Settings", "Speedhack", GUICtrlRead($Checkbox9))
 
 EndFunc   ;==>_Save_Settings
 
 
 Func _ReadMap()
-	Const $Map_Offsets[5] = [0x4F8, 0x4A8, 0x480,0x28,0x24C]
+	Const $Map_Offsets[5] = [0x4F8, 0x4A8, 0x480, 0x28, 0x24C]
 	Const $Map_StaticOffset = 0x01440B30
 
 	$pid = ProcessExists("PokeOne.exe")
@@ -946,74 +991,143 @@ Func _ReadMap()
 	$handles = _KDMemory_OpenProcess($pid)
 
 	$baseAddress = _KDMemory_GetModuleBaseAddress($handles, "UnityPlayer.dll") + $Map_StaticOffset
-	if @error Then
+	If @error Then
 		UpdateLog("Error: " & @error)
 		Return
 	EndIf
 	$memoryData = _KDMemory_ReadProcessMemory($handles, $baseAddress, "dword", $Map_Offsets)
 	_KDMemory_CloseHandles($handles)
-	if @error Then
+	If @error Then
 		UpdateLog("Error while reading Memory: Error: " & @error)
 		Return
 	EndIf
 
-	$MapID = IniRead(@ScriptDir & "\PokemonIDTable.ini",$memoryData[1],"Name","0")
-	if $MapID = "0" Then
-	If $Set_Game_Focus = 1 Then
-		WinSetOnTop("PokeOne", "", 0)
+	$MapID = IniRead(@ScriptDir & "\PokemonIDTable.ini", $memoryData[1], "Name", "0")
+	If $MapID = "0" Then
+		If $Set_Game_Focus = 1 Then
+			WinSetOnTop("PokeOne", "", 0)
 		EndIf
-	$New_Map = InputBox("Map isn't saved in the Database!"," Map ID: " & $memoryData[1] & ",  please Enter the Name of the Map and Press OK to save it.","")
-	If $Set_Game_Focus = 1 Then
-		WinSetOnTop("PokeOne", "", 1)
+		$New_Map = InputBox("Map isn't saved in the Database!", " Map ID: " & $memoryData[1] & ",  please Enter the Name of the Map and Press OK to save it.", "")
+		If $Set_Game_Focus = 1 Then
+			WinSetOnTop("PokeOne", "", 1)
 		EndIf
-	IniWrite(@ScriptDir & "\PokemonIDTable.ini",$memoryData[1],"Name",$New_Map)
-	UpdateLog("New Map saved in Database: " & $New_Map & "(" & $memoryData[1] & ")")
-	Return $memoryData[1]
+		IniWrite(@ScriptDir & "\PokemonIDTable.ini", $memoryData[1], "Name", $New_Map)
+		UpdateLog("New Map saved in Database: " & $New_Map & "(" & $memoryData[1] & ")")
+		Return $memoryData[1]
 	Else
-	;_ReadPokemon()
-	return $memoryData[1]
+		;_ReadPokemon()
+		Return $memoryData[1]
 	EndIf
 
-EndFunc
+EndFunc   ;==>_ReadMap
 
 
 
 Func _ReadPokemon($Mode = 1)
-	Const $PKMN_Offsets[5] = [0x480, 0x6B8, 0x630,0x28,0x58]
-	Const $PKMN_StaticOffset = 0x13F5878
-
+	#cs OLD POKEMON ID OFFSET
+		Const $PKMN_Offsets[5] = [0x480, 0x6B8, 0x630,0x28,0x58]
+		Const $PKMN_StaticOffset = 0x13F5878
+	#ce
+	Const $PKMN_Offsets[5] = [0x480, 0x6B8, 0x630, 0x28, 0x58]
+	Const $PKMN_StaticOffset = 0x013F5878
 	$pid = ProcessExists("PokeOne.exe")
 
 	$handles = _KDMemory_OpenProcess($pid)
 	$baseAddress = _KDMemory_GetModuleBaseAddress($handles, "UnityPlayer.dll") + $PKMN_StaticOffset
-
+	If @error Then
+		UpdateLog("Can't Read Base Address!")
+	EndIf
 	$memoryData = _KDMemory_ReadProcessMemory($handles, $baseAddress, "BYTE", $PKMN_Offsets)
+	If @error Then
+		UpdateLog("Can't Read Memory Region!")
+	EndIf
+
 	_KDMemory_CloseHandles($handles)
 
-	if $Mode = 1 Then
-	$MapID = _ReadMap()
-	$PokemonName = IniRead(@ScriptDir & "\PokemonIDTable.ini",$MapID,$memoryData[1],"0")
-	if  $PokemonName = "0" Then
-		If $Set_Game_Focus = 1 Then
-		WinSetOnTop("PokeOne", "", 0)
-	EndIf
-		$New_Pokemon = InputBox("Pokemon isn't saved in the Database!"," Pokemon ID: " & $memoryData[1] & ",  please Enter the Name of the Pokemon and Press OK to save it.","")
-		if Not $New_Pokemon =  "" Then
-			IniWrite(@ScriptDir & "\PokemonIDTable.ini",$MapID,$memoryData[1],$New_Pokemon)
-			UpdateLog("New Pokemon saved in Database: " & $New_Pokemon & "(" & $memoryData[1] & ")")
-			Return $New_Pokemon
+	If $Mode = 1 Then
+		$MapID = _ReadMap()
+		$PokemonName = IniRead(@ScriptDir & "\PokemonIDTable.ini", $MapID, $memoryData[1], "0")
+		If $PokemonName = "0" Then
+			If $Set_Game_Focus = 1 Then
+				WinSetOnTop("PokeOne", "", 0)
+			EndIf
+			$New_Pokemon = InputBox("Pokemon isn't saved in the Database!", " Pokemon ID: " & $memoryData[1] & ",  please Enter the Name of the Pokemon and Press OK to save it.", "")
+			If Not $New_Pokemon = "" Or Null Then
+				IniWrite(@ScriptDir & "\PokemonIDTable.ini", $MapID, "1", "None")
+				IniWrite(@ScriptDir & "\PokemonIDTable.ini", $MapID, $memoryData[1], $New_Pokemon)
+				UpdateLog("New Pokemon saved in Database: " & $New_Pokemon & "(" & $memoryData[1] & ")")
+				Return $New_Pokemon
+			EndIf
+			If $Set_Game_Focus = 1 Then
+				WinSetOnTop("PokeOne", "", 1)
+			EndIf
+		Else
+			Return $PokemonName
 		EndIf
-		If $Set_Game_Focus = 1 Then
-		WinSetOnTop("PokeOne", "", 1)
-		EndIf
-	Else
-	Return $PokemonName
+	ElseIf $Mode = 2 Then
+		Return $memoryData[1]
 	EndIf
-	elseif $Mode = 2 Then
-	return $memoryData[1]
-	EndIf
-
-
 
 EndFunc   ;==>_ReadPokemon
+
+
+Func _Speedhack()
+	Const $Spd_Offsets[5] = [0x598, 0x510, 0x1D8, 0x28, 0xC0]
+	Const $Spd_StaticOffset = 0x013F5878
+
+	$pid = ProcessExists("PokeOne.exe")
+
+	$handles = _KDMemory_OpenProcess($pid)
+
+	$baseAddress = _KDMemory_GetModuleBaseAddress($handles, "UnityPlayer.dll") + $Spd_StaticOffset
+	If @error Then
+		UpdateLog("Error: " & @error)
+		Return
+	EndIf
+
+	$Old_Speed = _KDMemory_ReadProcessMemory($handles, $baseAddress, "dword", $Spd_Offsets)
+	If @error Then
+		UpdateLog("Error while reading Memory: Error: " & @error)
+		Return
+	EndIf
+	UpdateLog("Prepairing Walk Speedhack")
+
+	Send("{LSHIFT}")
+	Sleep(1500)
+
+	$New_Speed = _KDMemory_ReadProcessMemory($handles, $baseAddress, "dword", $Spd_Offsets)
+
+	Send("{LSHIFT}")
+	Sleep(1500)
+
+	_KDMemory_WriteProcessMemory($handles, $baseAddress, 'dword', $New_Speed[1], $Spd_Offsets)
+	If @error Then
+		UpdateLog("Error while reading Memory: Error: " & @error)
+		Return
+	Else
+		UpdateLog("Speedhack Activated!")
+
+	EndIf
+	_KDMemory_CloseHandles($handles)
+
+
+EndFunc   ;==>_Speedhack
+
+
+Func Apply_Speedhack()
+	Const $Spd_Offsets[5] = [0x598, 0x510, 0x1D8, 0x28, 0xC0]
+	Const $Spd_StaticOffset = 0x013F5878
+
+	$pid = ProcessExists("PokeOne.exe")
+
+	$handles = _KDMemory_OpenProcess($pid)
+
+	$baseAddress = _KDMemory_GetModuleBaseAddress($handles, "UnityPlayer.dll") + $Spd_StaticOffset
+	If @error Then
+		UpdateLog("Error: " & @error)
+		Return
+	EndIf
+		_KDMemory_WriteProcessMemory($handles, $baseAddress, 'dword', $New_Speed[1], $Spd_Offsets)
+
+EndFunc
 
