@@ -137,7 +137,7 @@ $Old_Speed = 0
 Global $Paused
 
 #Region ### START Koda GUI section ### Form=c:\users\chris\documents\github\simple-pokeone-bot\gui\form1.kxf
-$Form1_1 = GUICreate("Simple Bot for PokeOne v1.1.2", 787, 415, 180, 124)
+$Form1_1 = GUICreate("Simple Bot for PokeOne v2.1", 787, 415, 180, 124)
 $Group1 = GUICtrlCreateGroup("Bot Log:", 8, 0, 377, 409)
 $Edit1 = GUICtrlCreateEdit("", 16, 16, 361, 385, BitOR($GUI_SS_DEFAULT_EDIT, $ES_READONLY))
 GUICtrlSetData(-1, "Edit1")
