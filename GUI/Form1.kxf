@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <object type="TAForm" name="Form1_1">
 	<properties>
-		<property name="Left" vt="Int16">235</property>
-		<property name="Top" vt="Int16">138</property>
-		<property name="Width" vt="Int16">926</property>
-		<property name="Height" vt="Int16">373</property>
+		<property name="Left" vt="Int16">180</property>
+		<property name="Top" vt="Int8">124</property>
+		<property name="Width" vt="Int16">802</property>
+		<property name="Height" vt="Int16">466</property>
 		<property name="Caption" vt="String">Simple Bot for PokeOne v1.1.2</property>
 		<property name="Color" vt="Ident">clBtnFace</property>
 		<property name="Font.Charset" vt="Ident">DEFAULT_CHARSET</property>
@@ -34,8 +34,8 @@
 			<properties>
 				<property name="Left" vt="Int8">8</property>
 				<property name="Top" vt="Int8">0</property>
-				<property name="Width" vt="Int16">313</property>
-				<property name="Height" vt="Int16">329</property>
+				<property name="Width" vt="Int16">377</property>
+				<property name="Height" vt="Int16">425</property>
 				<property name="CtrlStyle" vt="Int32">1342308359</property>
 				<property name="CtrlExStyle" vt="Int8">0</property>
 				<property name="Caption" vt="String">Bot Log:</property>
@@ -47,15 +47,15 @@
 					<properties>
 						<property name="Left" vt="Int8">8</property>
 						<property name="Top" vt="Int8">16</property>
-						<property name="Width" vt="Int16">297</property>
-						<property name="Height" vt="Int16">305</property>
+						<property name="Width" vt="Int16">361</property>
+						<property name="Height" vt="Int16">401</property>
 						<property name="Lines.Strings" vt="List">
 							<list>
 								<li vt="String">Edit1</li>
 							</list>
 						</property>
 						<property name="TabOrder" vt="Int8">0</property>
-						<property name="CtrlStyle" vt="Int32">1345523908</property>
+						<property name="CtrlStyle" vt="Int32">1345525956</property>
 						<property name="CtrlExStyle" vt="Int16">512</property>
 						<property name="Resizing" vt="Set"/>
 					</properties>
@@ -65,7 +65,7 @@
 		</object>
 		<object type="TAGroup" name="Group2">
 			<properties>
-				<property name="Left" vt="Int16">328</property>
+				<property name="Left" vt="Int16">392</property>
 				<property name="Top" vt="Int8">0</property>
 				<property name="Width" vt="Int16">177</property>
 				<property name="Height" vt="Int8">97</property>
@@ -95,7 +95,7 @@
 					<properties>
 						<property name="Left" vt="Int8">88</property>
 						<property name="Top" vt="Int8">24</property>
-						<property name="Width" vt="Int8">84</property>
+						<property name="Width" vt="Int8">76</property>
 						<property name="Height" vt="Int8">17</property>
 						<property name="Caption" vt="String">Bot not running</property>
 						<property name="TabOrder" vt="Int8">1</property>
@@ -170,10 +170,10 @@
 		</object>
 		<object type="TAGroup" name="Group3">
 			<properties>
-				<property name="Left" vt="Int16">512</property>
+				<property name="Left" vt="Int16">576</property>
 				<property name="Top" vt="Int8">0</property>
-				<property name="Width" vt="Int16">193</property>
-				<property name="Height" vt="Int16">193</property>
+				<property name="Width" vt="Int16">201</property>
+				<property name="Height" vt="Int16">305</property>
 				<property name="CtrlStyle" vt="Int32">1342308359</property>
 				<property name="CtrlExStyle" vt="Int8">0</property>
 				<property name="Caption" vt="String">Bot Settings:</property>
@@ -279,11 +279,54 @@
 					</properties>
 					<components/>
 				</object>
+				<object type="TACheckbox" name="Checkbox8">
+					<properties>
+						<property name="Left" vt="Int8">8</property>
+						<property name="Top" vt="Int16">192</property>
+						<property name="Width" vt="Int16">177</property>
+						<property name="Height" vt="Int8">17</property>
+						<property name="Caption" vt="String">Use Pokemon Database</property>
+						<property name="TabOrder" vt="Int8">7</property>
+						<property name="CtrlStyle" vt="Int32">1342242819</property>
+						<property name="CtrlExStyle" vt="Int8">0</property>
+						<property name="Resizing" vt="Set">DockHeight</property>
+					</properties>
+					<components/>
+				</object>
+				<object type="TAButton" name="Button4">
+					<properties>
+						<property name="Left" vt="Int8">88</property>
+						<property name="Top" vt="Int16">200</property>
+						<property name="Width" vt="Int8">1</property>
+						<property name="Height" vt="Int8">9</property>
+						<property name="Caption" vt="String">Button4</property>
+						<property name="TabOrder" vt="Int8">8</property>
+						<property name="Color" vt="Ident">clBtnFace</property>
+						<property name="CtrlStyle" vt="Int32">1342373888</property>
+						<property name="CtrlExStyle" vt="Int8">0</property>
+						<property name="Resizing" vt="Set">DockWidth, DockHeight</property>
+					</properties>
+					<components/>
+				</object>
+				<object type="TACheckbox" name="Checkbox9">
+					<properties>
+						<property name="Left" vt="Int8">8</property>
+						<property name="Top" vt="Int16">216</property>
+						<property name="Width" vt="Int16">177</property>
+						<property name="Height" vt="Int8">17</property>
+						<property name="Caption" vt="String">Speedhack ( Mount Speed )</property>
+						<property name="TabOrder" vt="Int8">9</property>
+						<property name="CtrlStyle" vt="Int32">1342242819</property>
+						<property name="CtrlExStyle" vt="Int8">0</property>
+						<property name="Resizing" vt="Set">DockHeight</property>
+					</properties>
+					<components/>
+				</object>
 			</components>
 		</object>
 		<object type="TAGroup" name="Group4">
 			<properties>
-				<property name="Left" vt="Int16">328</property>
+				<property name="Left" vt="Int16">392</property>
 				<property name="Top" vt="Int8">96</property>
 				<property name="Width" vt="Int16">177</property>
 				<property name="Height" vt="Int8">73</property>
@@ -358,9 +401,9 @@
 		</object>
 		<object type="TAButton" name="Button1">
 			<properties>
-				<property name="Left" vt="Int16">712</property>
-				<property name="Top" vt="Int16">160</property>
-				<property name="Width" vt="Int16">195</property>
+				<property name="Left" vt="Int16">392</property>
+				<property name="Top" vt="Int16">344</property>
+				<property name="Width" vt="Int16">179</property>
 				<property name="Height" vt="Int8">25</property>
 				<property name="Caption" vt="String">Start</property>
 				<property name="TabOrder" vt="Int8">4</property>
@@ -373,7 +416,7 @@
 		</object>
 		<object type="TAGroup" name="Group6">
 			<properties>
-				<property name="Left" vt="Int16">328</property>
+				<property name="Left" vt="Int16">392</property>
 				<property name="Top" vt="Int16">168</property>
 				<property name="Width" vt="Int16">177</property>
 				<property name="Height" vt="Int8">81</property>
@@ -448,10 +491,10 @@
 		</object>
 		<object type="TAGroup" name="Group5">
 			<properties>
-				<property name="Left" vt="Int16">712</property>
-				<property name="Top" vt="Int8">0</property>
-				<property name="Width" vt="Int16">193</property>
-				<property name="Height" vt="Int8">97</property>
+				<property name="Left" vt="Int16">576</property>
+				<property name="Top" vt="Int16">304</property>
+				<property name="Width" vt="Int16">201</property>
+				<property name="Height" vt="Int8">121</property>
 				<property name="CtrlStyle" vt="Int32">1342308359</property>
 				<property name="CtrlExStyle" vt="Int8">0</property>
 				<property name="Caption" vt="String">Bot Mode Settings</property>
@@ -501,11 +544,25 @@
 					</properties>
 					<components/>
 				</object>
+				<object type="TARadio" name="Radio4">
+					<properties>
+						<property name="Left" vt="Int8">8</property>
+						<property name="Top" vt="Int8">96</property>
+						<property name="Width" vt="Int16">185</property>
+						<property name="Height" vt="Int8">17</property>
+						<property name="Caption" vt="String">Slot Mashine Bot</property>
+						<property name="TabOrder" vt="Int8">3</property>
+						<property name="CtrlStyle" vt="Int32">1342242825</property>
+						<property name="CtrlExStyle" vt="Int8">0</property>
+						<property name="Resizing" vt="Set">DockHeight</property>
+					</properties>
+					<components/>
+				</object>
 			</components>
 		</object>
 		<object type="TAGroup" name="Group7">
 			<properties>
-				<property name="Left" vt="Int16">328</property>
+				<property name="Left" vt="Int16">392</property>
 				<property name="Top" vt="Int16">248</property>
 				<property name="Width" vt="Int16">177</property>
 				<property name="Height" vt="Int8">81</property>
@@ -572,9 +629,9 @@
 		</object>
 		<object type="TAButton" name="Button3">
 			<properties>
-				<property name="Left" vt="Int16">712</property>
-				<property name="Top" vt="Int16">192</property>
-				<property name="Width" vt="Int16">195</property>
+				<property name="Left" vt="Int16">392</property>
+				<property name="Top" vt="Int16">384</property>
+				<property name="Width" vt="Int16">179</property>
 				<property name="Height" vt="Int8">25</property>
 				<property name="Caption" vt="String">Quit</property>
 				<property name="TabOrder" vt="Int8">8</property>
@@ -587,8 +644,8 @@
 		</object>
 		<object type="TAGroup" name="Group8">
 			<properties>
-				<property name="Left" vt="Int16">712</property>
-				<property name="Top" vt="Int8">96</property>
+				<property name="Left" vt="Int16">584</property>
+				<property name="Top" vt="Int16">240</property>
 				<property name="Width" vt="Int16">185</property>
 				<property name="Height" vt="Int8">57</property>
 				<property name="CtrlStyle" vt="Int32">1342308359</property>
