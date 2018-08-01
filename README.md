@@ -1,4 +1,4 @@
-# Simple PokeOne Bot
+# PokeOne Bot
 
 A Bot for PokeOne, various Features, based on AutoIt with Pixelsearch, Memory Read, Mouse & Key Sends.
 
