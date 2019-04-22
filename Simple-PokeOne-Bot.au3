@@ -484,7 +484,7 @@ Func Overworld()
 
 	$RelogAttemps = 0
 	$CatchAttemps = 0
-	If $Use_Pkmn_DB Then
+	If $Use_Pkmn_DB = 1 Then
 		$Map = _ReadMap()
 	EndIf
 
@@ -1016,7 +1016,7 @@ Func _Reload_Settings()
 		$Bot_Mode = 4
 	EndIf
 
-	$Use_Pkmn_DB = GUICtrlRead($Checkbox8)
+	$Use_Pkmn_DB = guictrlread($Checkbox8)
 	$Speedhack = GUICtrlRead($Checkbox9)
 EndFunc   ;==>_Reload_Settings
 
